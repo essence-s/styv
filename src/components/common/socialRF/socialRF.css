@@ -1,0 +1,28 @@
+.SocialRF{
+    position: fixed;
+    bottom: 34px;
+    left: 35px;
+    z-index: 2;
+}
+
+.SocialRF-icon{
+    /* color: var(--color-icon); */
+    margin-top: 20px;
+    /* font-size: 26px; */
+    transition: 0.3s;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    /* box-shadow: -1px 1px 5px 1px #9357ff; */
+}
+.SocialRF-icon:hover{
+    transform: scale(1.2);
+}
+
+@media screen and (max-width: 700px){
+    .SocialRF{
+        bottom: 20px;
+        left: 15px;
+    }
+}

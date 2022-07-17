@@ -1,0 +1,75 @@
+.header{
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+}
+.header-imgBG{
+  position: absolute;
+  z-index: 0;
+  object-fit: cover;
+  filter: blur(11px) brightness(0.3) hue-rotate(208deg);
+  height: 103%;
+  width: 100%;
+}
+
+.header-container{
+  position: relative;
+  padding: 35px;
+  /* text-align: center; */
+}
+
+.header-title{
+  font-size: 3.5rem;
+  font-weight: 600;
+  font-family: var(--font-family);
+}
+.header-title p{
+  margin: 0;
+  line-height: 1.1;
+  text-shadow: -5px 4px 0px #605fe3;
+}
+
+.header-description{
+  font-family: var(--font-family-1);
+  max-width: 300px;
+font-weight: 600;
+  margin-top: 22px;
+}
+
+/* REDESS */
+.header-redes{
+  margin-top: 30px;
+  font-size: 2rem;
+  display: inline-grid;
+  gap: 9px;
+  grid-template-columns: repeat(4,35px);
+  color: var(--color-icon);
+  /* background: #6162df; */
+  background: #ffffff33;
+  padding: 6px;
+  border-radius: 25px;
+}
+.header-redesContent{
+  transition: 0.3s ease-out;
+  cursor: pointer;
+  height: 35px;
+}
+.header-redesContent:hover{
+  transform: scale(1.1);
+}
+
+
+
+
+@media screen and (max-width: 700px){
+  .header-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}

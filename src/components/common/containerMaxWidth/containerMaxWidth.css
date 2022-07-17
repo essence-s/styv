@@ -1,0 +1,7 @@
+.containerMaxWidth_color{
+    /* background: red; */
+}
+.containerMaxWidth{
+    max-width: 1400px;
+    margin: auto;
+}
