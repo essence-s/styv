@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/styv/static/css/main.547f0f36.css",
+    "main.js": "/styv/static/js/main.f7b7d6f8.js",
+    "static/js/787.58c6b5b2.chunk.js": "/styv/static/js/787.58c6b5b2.chunk.js",
+    "static/media/p1.png": "/styv/static/media/p1.e4b76c14c6e4e1f7632d.png",
+    "static/media/bg2.jpg": "/styv/static/media/bg2.e152a1e2b90c1e9a5778.jpg",
+    "static/media/darkpan.png": "/styv/static/media/darkpan.0e4e9b8063efb37f1440.png",
+    "static/media/poke.png": "/styv/static/media/poke.a4dbe06f4d9fb95000d6.png",
+    "static/media/me.svg": "/styv/static/media/me.4cf02f251ab962ceddec8bcc399070d4.svg",
+    "static/media/github.svg": "/styv/static/media/github.70aae02e84c9beca6d7e69cbc8d59822.svg",
+    "static/media/twitter.svg": "/styv/static/media/twitter.d23f9b8d3a91b5d00ff7dbf3f3b96d30.svg",
+    "static/media/facebook.svg": "/styv/static/media/facebook.de2379368d8f4326ab888a3844c298d2.svg",
+    "static/media/telegram.svg": "/styv/static/media/telegram.1f5d0ac527285e4337ceffd1f5ff0e2c.svg",
+    "index.html": "/styv/index.html",
+    "main.547f0f36.css.map": "/styv/static/css/main.547f0f36.css.map",
+    "main.f7b7d6f8.js.map": "/styv/static/js/main.f7b7d6f8.js.map",
+    "787.58c6b5b2.chunk.js.map": "/styv/static/js/787.58c6b5b2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.547f0f36.css",
+    "static/js/main.f7b7d6f8.js"
+  ]
+}
