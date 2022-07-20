@@ -1,7 +1,7 @@
 import React from "react";
 import "./header.css";
 import bgheader from "assets/bg2.jpg";
-import { telegram, github, twitter, facebook } from "assets/iconSR";
+import { telegram, github, twitter, linkedin } from "assets/iconSR";
 import { motion } from "framer-motion";
 
 const container = {
@@ -41,8 +41,8 @@ const Header = () => {
           <motion.div className="header-redes" variants={container}>
             
             <motion.div className="header-redesContent" variants={item}>
-              <a href="https://github.com/essence-s" target="_blank" rel="noreferrer">
-                <img src={telegram} alt="imgTelegram" />
+              <a href="https://www.linkedin.com/in/styven-huamani-corahua-ba7940244/" target="_blank" rel="noreferrer">
+                <img src={linkedin} alt="imgTelegram" />
               </a>
             </motion.div>
 
@@ -53,11 +53,15 @@ const Header = () => {
             </motion.div>
 
             <motion.div className="header-redesContent" variants={item}>
-              <img src={twitter} alt="" />
+              <a href="https://twitter.com/23Styv" target="_blank" rel="noreferrer">
+                <img src={twitter} alt="" />
+              </a>
             </motion.div>
 
-            <motion.div className="header-redesContent" variants={item}>
-              <img src={facebook} alt="" />
+             <motion.div className="header-redesContent" variants={item}>
+              <a href="tg://resolve?domain=souma2299" target="_blank" rel="noreferrer">
+                <img src={telegram} alt="" />
+              </a>
             </motion.div>
 
           </motion.div>
