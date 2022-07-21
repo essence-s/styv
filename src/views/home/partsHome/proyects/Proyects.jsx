@@ -36,7 +36,13 @@ const Proyects = () => {
               </a>
             </div>
             <div className="proyects-illuImg">
-              <img src={p1} alt="" />
+              <a
+                href="https://essence-s.github.io/p1/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={p1} alt="" />
+              </a>
             </div>
           </div>
         </div>
