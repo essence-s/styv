@@ -1,71 +1,72 @@
 import React from "react";
 import "./header.css";
-import bgheader from "assets/bg2.jpg";
+import bgheader from "./files/bg2.jpg";
 import { telegram, github, twitter, linkedin } from "assets/iconSR";
 import { motion } from "framer-motion";
-
-const container = {
-    hidden:{ opacity: 0 },
-    show:{
-          opacity: 1,
-          transition:{
-            delayChildren:0.7,
-            staggerChildren: 0.1
-          }
-    }
-}
-const item = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1 },
-};
+import { container, item } from "utils/frameMotion";
 
 const Header = () => {
   return (
-    <motion.div className="header" 
+    <motion.div
+      className="header"
+      id="home"
       variants={container}
       initial="hidden"
-      animate="show">
-
-      <img className="header-imgBG" src={bgheader} alt="fondojapon" />
-      <div className="header-container">
-        <div className="header-content">
-          <div className="header-title">
+      animate="show"
+    >
+      <img className="header__imgBG" src={bgheader} alt="fondojapon" />
+      <div className="header__container">
+        <div className="header__content">
+          <div className="header__title">
             <motion.p variants={item}>Hola 🖐</motion.p>
             <motion.p variants={item}>Soy Styven, Front-end</motion.p>
             <motion.p variants={item}>Web Developer</motion.p>
           </div>
-          <motion.div className="header-description" variants={item}>
+          <motion.div className="header__description" variants={item}>
             Me Gusta hacer Productos Frontend Minimalistas y escalables
           </motion.div>
 
-          <motion.div className="header-redes" variants={container}>
-            
-            <motion.div className="header-redesContent" variants={item}>
-              <a href="https://www.linkedin.com/in/styven-huamani-corahua-ba7940244/" target="_blank" rel="noreferrer">
-                <img src={linkedin} alt="imgTelegram" />
+          <motion.div className="header__redes" variants={container}>
+            <motion.div className="header__redes-content" variants={item}>
+              <a
+                href="https://www.linkedin.com/in/styven-huamani-corahua-ba7940244/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={linkedin} alt="imglinkedin" />
               </a>
             </motion.div>
 
-            <motion.div className="header-redesContent" variants={item}>
-              <a href="https://github.com/essence-s" target="_blank" rel="noreferrer">
-                <img src={github} alt="" />
+            <motion.div className="header__redes-content" variants={item}>
+              <a
+                href="https://github.com/essence-s"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={github} alt="imggithub" />
               </a>
             </motion.div>
 
-            <motion.div className="header-redesContent" variants={item}>
-              <a href="https://twitter.com/23Styv" target="_blank" rel="noreferrer">
-                <img src={twitter} alt="" />
+            <motion.div className="header__redes-content" variants={item}>
+              <a
+                href="https://twitter.com/23Styv"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={twitter} alt="imgtwitter" />
               </a>
             </motion.div>
 
-             <motion.div className="header-redesContent" variants={item}>
-              <a href="tg://resolve?domain=souma2299" target="_blank" rel="noreferrer">
-                <img src={telegram} alt="" />
+            <motion.div className="header__redes-content" variants={item}>
+              <a
+                href="tg://resolve?domain=souma2299"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={telegram} alt="imgtelegram" />
               </a>
             </motion.div>
-
           </motion.div>
-
         </div>
       </div>
     </motion.div>

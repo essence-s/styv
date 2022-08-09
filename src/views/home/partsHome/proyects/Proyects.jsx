@@ -3,21 +3,15 @@ import "./proyects.css";
 import darkpan from "./files/darkpan.png";
 import poke from "./files/poke.png";
 import p1 from "./files/p1.png";
+import ds from "./files/ds.png";
 const Proyects = () => {
   return (
-    <div className="proyects">
-      <div className="proyects-container">
-        <div className="proyects-content">
-          <div className="proyects-info">
-            <p className="proyects-title">Proyects</p>
-            <p className="proyects-text">
-              Estos son algunos de mis proyectos hechos con Reactjs trato de que
-              sean bonitas y minimalistas aun estoy iniciando y esforzandome
-              para mejorar.
-            </p>
-          </div>
-          <div className="proyects-illu">
-            <div className="proyects-illuImg">
+    <div className="proyects" id="proyects">
+      <div className="proyects__container">
+        <p className="proyects__title">Proyectos</p>
+        <div className="proyects__content">
+          <div className="proyects__illu">
+            <div className="proyects__img">
               <a
                 href="https://essence-s.github.io/darkpan/"
                 target="_blank"
@@ -26,7 +20,7 @@ const Proyects = () => {
                 <img src={darkpan} alt="darkpan" />
               </a>
             </div>
-            <div className="proyects-illuImg">
+            <div className="proyects__img">
               <a
                 href="https://essence-s.github.io/poke/"
                 target="_blank"
@@ -35,13 +29,22 @@ const Proyects = () => {
                 <img src={poke} alt="" />
               </a>
             </div>
-            <div className="proyects-illuImg">
+            <div className="proyects__img">
               <a
                 href="https://essence-s.github.io/p1/"
                 target="_blank"
                 rel="noreferrer"
               >
                 <img src={p1} alt="" />
+              </a>
+            </div>
+            <div className="proyects__img">
+              <a
+                href="https://essence-s.github.io/ds/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={ds} alt="" />
               </a>
             </div>
           </div>

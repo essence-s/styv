@@ -1,77 +1,74 @@
-.proyects{
+.proyects {
   color: var(--color-text);
   background: linear-gradient(281deg, #19191a, #1a1a1c);
   /* background: linear-gradient(281deg, #192537, #06070d); */
-  
+  min-height: 100vh;
+  display: flex;
 }
 
-.proyects-container{
-  padding: 150px 30px;
+.proyects__container {
+  margin: auto;
+  max-width: 900px;
+  width: 100%;
+  padding: 100px 30px;
 }
 
-.proyects-content{
+.proyects__content {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 50px;
+  gap: 55px;
 }
 
-.proyects-info{
+.proyects__info {
   max-width: 300px;
   font-family: var(--font-family-1);
 }
-.proyects-title{
+.proyects__title {
   font-size: 2rem;
-  font-family: var(--font-family)
-}
-.proyects-text{
-  font-weight: 600;
+  font-family: var(--font-family);
 }
 
-.proyects-illu{
-  width: 320px;
+.proyects__illu {
+  /* width: 320px; */
   /* height: 270px; */
-  background: linear-gradient(0deg, #6f70f2, #9b74cd);
-  border-radius: 25px;
+  /* background: linear-gradient(0deg, #6f70f2, #9b74cd); */
+  border-radius: 15px;
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   padding: 50px 15px 15px 15px;
   gap: 15px;
 }
 
-.proyects-illuImg{
-  border-radius: 15px;
+.proyects__img {
+  border-radius: 8px;
   background: #2d2828;
   overflow: hidden;
   transition: 0.3s;
   cursor: pointer;
-  border: solid 3px #d6d6d9;
+  border: solid 2px #d6d6d9;
 }
-.proyects-illuImg:hover{
-  transform: scale(2.9);
-}
-.proyects-illuImg:nth-child(1):hover{
-  transform: scale(1.5)
-}
-.proyects-illuImg:nth-child(1){
-  grid-column: 1/3;
-}
-.proyects-illuImg img{
+
+.proyects__img img {
   width: 100%;
   height: 100%;
 }
 
-
-
-@media screen and (max-width: 700px){
-  .proyects-content{
-    flex-direction: column;
-  }
-  .proyects-illuImg:hover{
-    transform: scale(1.5);
-  }
-  .proyects-illuImg:nth-child(1):hover{
-    transform: scale(1.2)
-  }
+.proyects__img:hover {
+  transform: scale(1.02);
 }
 
+@media screen and (max-width: 700px) {
+  .proyects__container {
+    padding: 50px 30px;
+  }
+  .proyects__content {
+    flex-direction: column;
+  }
+  .proyects__illuImg:hover {
+    transform: scale(1.5);
+  }
+  .proyects__illuImg:nth-child(1):hover {
+    transform: scale(1.2);
+  }
+}
