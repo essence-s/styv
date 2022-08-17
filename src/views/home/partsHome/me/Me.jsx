@@ -9,12 +9,15 @@ const Me = () => {
         <div className="me__info">
           <p className="me__title">Sobre mi</p>
           <p className="me__text">
-            Me gusta maquetar para la web y estoy esforzandome para mejorar,
-            tambien estoy que aprendo sobre React es una buena libreria me
-            facina su facilidad.
+            Me gusta maquetar y hacer un buen proyecto con la organización del
+            equipo
           </p>
-          <p>
-            El mundo de la programacion es muy grande pero quiero superar esos
+          <div className="me__technologies">
+          <p>Las tecnologías que uso son :</p>
+          <p>Reactjs , javascript , html , css , nodejs y en el diseño uso figma</p>
+          </div>
+          <p className="me__text">
+            El mundo de la programacion es muy grande y voy superar esos
             retos.
           </p>
         </div>

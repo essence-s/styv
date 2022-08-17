@@ -20,6 +20,12 @@
 .me__title {
   font-size: 2rem;
   font-family: var(--font-family);
+  margin-top: 0;
+}
+
+.me__technologies{
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .me__illu {

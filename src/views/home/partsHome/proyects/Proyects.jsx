@@ -4,6 +4,7 @@ import darkpan from "./files/darkpan.png";
 import poke from "./files/poke.png";
 import p1 from "./files/p1.png";
 import ds from "./files/ds.png";
+import ApliIMC from "./files/ApliIMC.png"
 const Proyects = () => {
   return (
     <div className="proyects" id="proyects">
@@ -45,6 +46,15 @@ const Proyects = () => {
                 rel="noreferrer"
               >
                 <img src={ds} alt="" />
+              </a>
+            </div>
+            <div className="proyects__img">
+              <a
+                href="https://essence-s.github.io/ApliIMC/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={ApliIMC} alt="" />
               </a>
             </div>
           </div>
