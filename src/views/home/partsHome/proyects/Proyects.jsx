@@ -4,7 +4,8 @@ import darkpan from "./files/darkpan.png";
 import poke from "./files/poke.png";
 import p1 from "./files/p1.png";
 import ds from "./files/ds.png";
-import ApliIMC from "./files/ApliIMC.png"
+import ApliIMC from "./files/ApliIMC.png";
+import { css, html, js, react } from "./files/tech";
 const Proyects = () => {
   return (
     <div className="proyects" id="proyects">
@@ -20,6 +21,14 @@ const Proyects = () => {
               >
                 <img src={darkpan} alt="darkpan" />
               </a>
+              <div className="proyects__img-info">
+                <div className="proyects__img-tech">
+                  <img src={js} alt="" />
+                  <img src={html} alt="" />
+                  <img src={css} alt="" />
+                  <img src={react} alt="" />
+                </div>
+              </div>
             </div>
             <div className="proyects__img">
               <a
@@ -29,6 +38,14 @@ const Proyects = () => {
               >
                 <img src={poke} alt="" />
               </a>
+              <div className="proyects__img-info">
+                <div className="proyects__img-tech">
+                  <img src={js} alt="" />
+                  <img src={html} alt="" />
+                  <img src={css} alt="" />
+                  <img src={react} alt="" />
+                </div>
+              </div>
             </div>
             <div className="proyects__img">
               <a
@@ -38,6 +55,14 @@ const Proyects = () => {
               >
                 <img src={p1} alt="" />
               </a>
+              <div className="proyects__img-info">
+                <div className="proyects__img-tech">
+                  <img src={js} alt="" />
+                  <img src={html} alt="" />
+                  <img src={css} alt="" />
+                  <img src={react} alt="" />
+                </div>
+              </div>
             </div>
             <div className="proyects__img">
               <a
@@ -47,6 +72,14 @@ const Proyects = () => {
               >
                 <img src={ds} alt="" />
               </a>
+              <div className="proyects__img-info">
+                <div className="proyects__img-tech">
+                  <img src={js} alt="" />
+                  <img src={html} alt="" />
+                  <img src={css} alt="" />
+                  <img src={react} alt="" />
+                </div>
+              </div>
             </div>
             <div className="proyects__img">
               <a
@@ -56,6 +89,13 @@ const Proyects = () => {
               >
                 <img src={ApliIMC} alt="" />
               </a>
+              <div className="proyects__img-info">
+                <div className="proyects__img-tech">
+                  <img src={js} alt="" />
+                  <img src={html} alt="" />
+                  <img src={css} alt="" />
+                </div>
+              </div>
             </div>
           </div>
         </div>

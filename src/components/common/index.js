@@ -7,3 +7,6 @@ export {default as MainAnimation} from './mainAnimation/MainAnimation';
 export {default as CardB} from './cardB/CardB'
 
 export {default as IndexBox} from './indexBox/IndexBox'
+
+
+export {default as Scene} from './scene/Scene'

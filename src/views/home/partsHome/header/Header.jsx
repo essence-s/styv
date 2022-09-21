@@ -4,6 +4,7 @@ import bgheader from "./files/bg2.jpg";
 import { telegram, github, twitter, linkedin } from "assets/iconSR";
 import { motion } from "framer-motion";
 import { container, item } from "utils/frameMotion";
+import { Scene } from "components/common";
 
 const Header = () => {
   return (
@@ -15,6 +16,9 @@ const Header = () => {
       animate="show"
     >
       <img className="header__imgBG" src={bgheader} alt="fondojapon" />
+
+      
+
       <div className="header__container">
         <div className="header__content">
           <div className="header__title">
@@ -69,6 +73,11 @@ const Header = () => {
           </motion.div>
         </div>
       </div>
+
+      <motion.div className="header__scene" variants={item}>
+        <Scene></Scene>
+      </motion.div>
+
     </motion.div>
   );
 };
