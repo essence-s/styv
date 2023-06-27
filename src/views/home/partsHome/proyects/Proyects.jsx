@@ -5,6 +5,7 @@ import poke from "./files/poke.png";
 import p1 from "./files/p1.png";
 import ds from "./files/ds.png";
 import ApliIMC from "./files/ApliIMC.png";
+import VQ from "./files/video-question.png";
 import { css, html, js, ireact, info } from "./files/tech";
 
 let d = [
@@ -24,26 +25,34 @@ let d = [
     iInfo: info,
   },
   {
+    imgWeb: VQ,
+    link: "https://essence-s.github.io/video-question/",
+    techs: [js, html, css, ireact],
+    infoText: 'web - responder las preguntas con un video o audio',
+    iInfo: info,
+  },
+  {
     imgWeb: p1,
     link: "https://essence-s.github.io/p1/",
     techs: [js, html, css, ireact],
-    infoText:'Animaciones y diseño simple.',
+    infoText: 'Animaciones y diseño simple.',
     iInfo: info,
   },
   {
     imgWeb: ds,
     link: "https://essence-s.github.io/ds/",
     techs: [js, html, css, ireact],
-    infoText:'Web con diseño mas empresarial ,con slider hero.',
+    infoText: 'Web con diseño mas empresarial ,con slider hero.',
     iInfo: info,
   },
   {
     imgWeb: ApliIMC,
     link: "https://essence-s.github.io/ApliIMC/",
     techs: [js, html, css],
-    infoText:'El proyecto calcula el peso ideal de una persona, te dice en que promedio estas.',
+    infoText: 'El proyecto calcula el peso ideal de una persona, te dice en que promedio estas.',
     iInfo: info,
   },
+
 ];
 
 const Proyects = () => {
@@ -53,7 +62,7 @@ const Proyects = () => {
         <p className="proyects__title">Proyectos</p>
         <div className="proyects__content">
           <div className="proyects__illu">
-            {d.map((r,i) => {
+            {d.map((r, i) => {
               return (
                 <div className="proyects__img" key={i}>
                   <a href={r.link} target="_blank" rel="noreferrer">

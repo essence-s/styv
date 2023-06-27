@@ -13,11 +13,11 @@ const Me = () => {
             equipo.
           </p>
           <div className="me__technologies">
-          <p>Las tecnologías que manejo :</p>
-          <p>Reactjs , Javascript , Html , Css , Nodejs , Figma , Blender</p>
+            <p>Las tecnologías que manejo :</p>
+            <p>Reactjs , Nodejs , Python ,Javascript , Html , Css , Figma , Blender</p>
           </div>
           <p className="me__text">
-            
+
           </p>
         </div>
         <div className="me__illu">

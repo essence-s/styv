@@ -17,7 +17,7 @@ const Header = () => {
     >
       <img className="header__imgBG" src={bgheader} alt="fondojapon" />
 
-      
+
 
       <div className="header__container">
         <div className="header__content">
@@ -27,7 +27,7 @@ const Header = () => {
             <motion.p variants={item}>Web Developer</motion.p>
           </div>
           <motion.div className="header__description" variants={item}>
-            Me Gusta hacer Productos Frontend Minimalistas y escalables
+            Creando interfaces atractivas y funcionales 🍃🍂✨
           </motion.div>
 
           <motion.div className="header__redes" variants={container}>
