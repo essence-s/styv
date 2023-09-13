@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./header.css";
-import bgheader from "./files/bg2.jpg";
+import bgheader from "./files/bg21.jpg";
 import { telegram, github, twitter, linkedin } from "assets/iconSR";
 import { motion } from "framer-motion";
 import { container, item } from "utils/frameMotion";
 import { Scene } from "components/common";
 
 const Header = () => {
+  useEffect(() => {
+    console.log('heaeee')
+  }, [])
   return (
     <motion.div
       className="header"

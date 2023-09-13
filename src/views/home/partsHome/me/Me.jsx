@@ -1,6 +1,7 @@
 import React from "react";
 import "./me.css";
-import mesvg from "./files/me.svg";
+// import mesvg from "./files/me.svg";
+import { Scene2 } from "components/common";
 
 const Me = () => {
   return (
@@ -14,14 +15,15 @@ const Me = () => {
           </p>
           <div className="me__technologies">
             <p>Las tecnologías que manejo :</p>
-            <p>Reactjs , Nodejs , Python ,Javascript , Html , Css , Figma , Blender</p>
+            <p>Reactjs , Nodejs , Python , Javascript , Html , Css , Figma , Blender</p>
           </div>
           <p className="me__text">
 
           </p>
         </div>
         <div className="me__illu">
-          <img src={mesvg} alt="" />
+          <Scene2></Scene2>
+          {/* <img src={mesvg} alt="" /> */}
         </div>
       </div>
     </div>
