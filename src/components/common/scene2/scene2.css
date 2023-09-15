@@ -9,4 +9,5 @@
 
 .scene2 canvas {
   border-radius: 5px;
+  border: 1px #dddddd1c solid;
 }

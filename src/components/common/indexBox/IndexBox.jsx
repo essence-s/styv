@@ -14,11 +14,11 @@ const IndexBox = () => {
     window.addEventListener("scroll", () => {
       let data = ["home", "proyects", "me"];
       let scrollT = document.documentElement.scrollTop + 200;
-      
+
       data.forEach((r) => {
         let element = document.querySelector(`#${r}`);
         let offsetTopElement = element.offsetTop;
-        
+
         if (!(offsetTopElement <= scrollT)) return;
 
         if (!(indiEleme === r)) {
@@ -58,21 +58,21 @@ const IndexBox = () => {
       <a href="#home">
         <motion.div variants={item} className="indexbox__item">
           <div className="indexbox__shape ib-shape-view">
-            <div className="indexbox__shape-inside"></div>
+            {/* <div className="indexbox__shape-inside"></div> */}
           </div>
         </motion.div>
       </a>
       <a href="#proyects">
         <motion.div variants={item} className="indexbox__item">
           <div className="indexbox__shape">
-            <div className="indexbox__shape-inside"></div>
+            {/* <div className="indexbox__shape-inside"></div> */}
           </div>
         </motion.div>
       </a>
       <a href="#me">
         <motion.div variants={item} className="indexbox__item">
           <div className="indexbox__shape">
-            <div className="indexbox__shape-inside"></div>
+            {/* <div className="indexbox__shape-inside"></div> */}
           </div>
         </motion.div>
       </a>

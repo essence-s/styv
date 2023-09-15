@@ -7,6 +7,7 @@
   height: 100vh;
   position: relative;
 }
+
 .header__imgBG {
   position: absolute;
   z-index: 0;
@@ -29,6 +30,7 @@
   font-weight: 600;
   font-family: var(--font-family);
 }
+
 .header__title p {
   margin: 0;
   line-height: 1.1;
@@ -55,17 +57,20 @@
   background: #ffffff33;
   padding: 6px;
   border-radius: 25px;
+  border: 1px #ffffff29 solid;
 }
+
 .header__redes-content {
   transition: 0.3s ease-out;
   cursor: pointer;
   height: 35px;
 }
+
 .header__redes-content:hover {
   transform: scale(1.1);
 }
 
-.header__scene{
+.header__scene {
   position: absolute;
   bottom: 0;
   width: 100%;

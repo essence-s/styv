@@ -21,7 +21,7 @@
 }
 
 .proyects__title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-family: var(--font-family);
 }
 
@@ -44,6 +44,7 @@
   /* border: solid 2px #d6d6d9; */
   display: flex;
   flex-direction: column;
+  border: 1px #6363638f solid;
 }
 
 .proyects__img .proyects__img-web {
@@ -57,9 +58,9 @@
 }
 
 .proyects__info {
-  padding: 6px;
+  padding: 10px;
   display: flex;
-
+  flex: 1 1;
 }
 
 .proyects__img-tech {

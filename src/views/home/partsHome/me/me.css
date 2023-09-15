@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
 }
+
 .me__container {
   padding: 100px 30px;
   width: 100%;
@@ -12,18 +13,20 @@
   align-items: center;
   gap: 50px;
 }
+
 .me__info {
   color: var(--color-text);
   max-width: 300px;
   font-family: var(--font-family-1);
 }
+
 .me__title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-family: var(--font-family);
   margin-top: 0;
 }
 
-.me__technologies{
+.me__technologies {
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -31,6 +34,7 @@
 .me__illu {
   width: 320px;
 }
+
 .me__illu img {
   width: 100%;
 }
