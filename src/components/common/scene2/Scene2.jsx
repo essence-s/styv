@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import "./scene2.css";
 import * as THREE from "three";
 // import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import sheet from './files/i2'
-import mage from './files/i1'
-import { SpriteFlipbook } from './spritea'
+import sheet from './files/i2.png'
+import mage from './files/i1.png'
+import { SpriteFlipbook } from './spritea.js'
 
 const Scene2 = () => {
   let directionalLight = new THREE.SpotLight(0xffffff, 2, 50, 0.2, .05, 0);
@@ -34,14 +34,14 @@ const Scene2 = () => {
     // orbitControls.enableDamping = true;
 
 
-    const flipBook = new SpriteFlipbook(sheet, 8, 8, scene, 1.9)
+    const flipBook = new SpriteFlipbook(sheet.src, 8, 8, scene, 1.9)
 
     flipBook.loop(59, 6)
     flipBook.sprite.castShadow = true;
     flipBook.sprite.receiveShadow = true;
     flipBook.sprite.position.set(0, 1, 0);
 
-    const flipBook2 = new SpriteFlipbook(mage, 4, 4, scene, 1.4)
+    const flipBook2 = new SpriteFlipbook(mage.src, 4, 4, scene, 1.4)
 
     flipBook2.loop(16, 1.2)
     flipBook2.sprite.castShadow = true;

@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useRef } from "react";
 import "./indexBox.css";
 import { motion } from "framer-motion";
-import { container, item } from "utils/frameMotion";
+import { container, item } from "@utils/frameMotion";
 
 const IndexBox = () => {
   let contentLinks = useRef();

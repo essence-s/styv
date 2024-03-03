@@ -1,6 +1,6 @@
 .indexbox {
   position: fixed;
-  top: 50%;
+  top: 50dvh;
   left: 30px;
   z-index: 1;
   display: flex;
