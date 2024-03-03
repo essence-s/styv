@@ -1,7 +1,7 @@
 {
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
-    "baseUrl": "D:/AstroProyects/styv-astro",
+    "baseUrl": ".",
     "paths": {
       "@components/*": [
         "src/components/*"
