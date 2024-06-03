@@ -1,11 +1,12 @@
 import "./proyects.css";
+import ahiseve from "./files/ahiseve.png";
 import darkpan from "./files/darkpan.png";
 import poke from "./files/poke.png";
 import p1 from "./files/p1.png";
 import ds from "./files/ds.png";
 import ApliIMC from "./files/ApliIMC.png";
-import VQ from "./files/video-question.png";
-import { css, html, js, ireact, info } from "./files/tech";
+// import VQ from "./files/video-question.png";
+import { css, html, js, ireact, info, astro } from "./files/tech";
 
 // import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 // import { Carousel } from 'react-responsive-carousel';
@@ -27,9 +28,20 @@ let techs = {
     name: 'react',
     src: ireact.src
   },
+  astro: {
+    name: 'astro',
+    src: astro.src
+  },
 }
 
 let d = [
+  {
+    imgWeb: ahiseve.src,
+    link: "https://ahiseve.vercel.app/",
+    techs: [techs.js, techs.html, techs.css, techs.ireact, techs.astro],
+    infoText: "Cree una sala con amigos y sincronize, controle, transmita un video",
+    iInfo: info.src,
+  },
   {
     imgWeb: darkpan.src,
     link: "https://essence-s.github.io/darkpan/",
@@ -42,16 +54,16 @@ let d = [
     link: "https://essence-s.github.io/poke/",
     techs: [techs.js, techs.html, techs.css, techs.ireact],
     infoText:
-      "Este proyecto usa la api de pokeapi , puedes buscar cualquier pokemon y ver sus estadisticas.",
+      "Buscar cualquier pokemon y ver sus estadisticas, evoluciones, etc.",
     iInfo: info.src,
   },
-  {
-    imgWeb: VQ.src,
-    link: "https://essence-s.github.io/video-question/",
-    techs: [techs.js, techs.html, techs.css, techs.ireact],
-    infoText: 'web - responder las preguntas con un video o audio',
-    iInfo: info.src,
-  },
+  // {
+  //   imgWeb: VQ.src,
+  //   link: "https://essence-s.github.io/video-question/",
+  //   techs: [techs.js, techs.html, techs.css, techs.ireact],
+  //   infoText: 'web - responder las preguntas con un video o audio',
+  //   iInfo: info.src,
+  // },
   {
     imgWeb: p1.src,
     link: "https://essence-s.github.io/p1/",
