@@ -89,7 +89,7 @@ const Scene = () => {
         action1.setLoop(THREE.LoopOnce);
         setTimeout(() => {
           action1.play();
-        }, 2000);
+        }, 1500);
 
         setTimeout(() => {
           try {
@@ -99,7 +99,7 @@ const Scene = () => {
               cleanUpScene();
             }, 1000);
           } catch (e) { }
-        }, 8000);
+        }, 7500);
       },
       () => {
         // console.log("progress");

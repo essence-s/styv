@@ -3,7 +3,7 @@ const container = {
   show: {
     opacity: 1,
     transition: {
-      delayChildren: 0.7,
+      delayChildren: 0.4,
       staggerChildren: 0.1
     }
   }
