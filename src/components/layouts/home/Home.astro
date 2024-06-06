@@ -1,0 +1,20 @@
+---
+import { IndexBox } from "@components/common";
+import { Footer } from "@components/layouts";
+import { Header, Me, Proyects } from "./partsHome";
+---
+
+<style>
+  .home {
+    background: #202020;
+    width: 100%;
+    min-height: 100vh;
+  }
+</style>
+<div class="home">
+  <IndexBox client:load />
+  <Header client:load />
+  <Proyects />
+  <Me client:load />
+  <Footer />
+</div>
