@@ -58,17 +58,17 @@ const Scene2 = () => {
     scene.add(ground);
 
     const clock = new THREE.Clock();
-
+    let requestId
     const animate = () => {
-
+      requestId = requestAnimationFrame(animate);
       let deltaTime = clock.getDelta()
       flipBook.update(deltaTime)
       flipBook2.update(deltaTime)
       renderer.render(scene, camera);
 
-      requestAnimationFrame(animate);
+
     };
-    animate();
+    // animate();
 
     const lightAmbiental = new THREE.AmbientLight(0xffffff, 0.5); //1 normal
 
@@ -84,6 +84,32 @@ const Scene2 = () => {
     scene.add(directionalLight);
 
 
+    // start render
+    function start() {
+      animate();
+    }
+
+    // stop render
+    function stop() {
+      window.cancelAnimationFrame(requestId);
+      requestId = undefined;
+    }
+
+    const intersectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          start();
+          console.log('render has been started');
+        } else {
+          stop();
+          console.log('render has been halted');
+        }
+      });
+    });
+
+    // let footer = document.querySelector('.footer')
+    // intersectionObserver.observe(footer)
+    intersectionObserver.observe(renderer.domElement)
   }
 
 
