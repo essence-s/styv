@@ -99,10 +99,10 @@ const Scene2 = () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           start();
-          console.log('render has been started');
+          // console.log('render has been started');
         } else {
           stop();
-          console.log('render has been halted');
+          // console.log('render has been halted');
         }
       });
     });
