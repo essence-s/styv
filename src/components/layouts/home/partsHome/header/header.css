@@ -44,7 +44,7 @@
 .header__title-1 {
 	font-size: 1.9rem;
 	line-height: 1;
-	margin-bottom: 22px;
+	margin-bottom: 16px;
 	letter-spacing: 1px;
 }
 .header__title-2 {
@@ -63,12 +63,12 @@
 	font-family: var(--font-family-1);
 	max-width: 300px;
 	font-weight: 600;
-	margin-top: 22px;
+	margin-top: 20px;
 }
 
 /* REDESS */
 .header__redes {
-	margin-top: 30px;
+	margin-top: 20px;
 	font-size: 2rem;
 	display: inline-grid;
 	gap: 9px;
