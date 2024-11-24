@@ -26,6 +26,14 @@
 	/* text-align: center; */
 }
 
+.header__content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
 .header__title {
 	font-size: 3.5rem;
 	font-weight: 600;
@@ -97,7 +105,7 @@
 	width: 100%;
 }
 
-@media screen and (max-width: 700px) {
+/* @media screen and (max-width: 700px) {
 	.header__content {
 		display: flex;
 		flex-direction: column;
@@ -105,4 +113,4 @@
 		align-items: center;
 		text-align: center;
 	}
-}
+} */
