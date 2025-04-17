@@ -10,12 +10,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^4.2.0",
+    "@astrojs/react": "^4.2.4",
     "@fontsource/bebas-neue": "^5.0.18",
     "@fontsource/poppins": "^5.0.8",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
-    "astro": "^5.3.1",
+    "astro": "^5.7.2",
     "framer-motion": "^11.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
