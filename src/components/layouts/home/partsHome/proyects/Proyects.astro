@@ -1,13 +1,18 @@
 ---
+import { Fragment } from 'astro/jsx-runtime';
 import ahiseve from './files/ahiseve.png';
 import bot from './files/bot-whatsapp.png';
 import darkpan from './files/darkpan.png';
 import ds from './files/ds.png';
-import githubPages from './files/github-pages.svg';
-import iconMail from './files/icon-mail.svg';
+
+// import github from './files/github.svg';
+import Github from './files/Github.astro';
+import IconMail from './files/IconMail.astro';
+// import iconMail from './files/icon-mail.svg';
 import p1 from './files/p1.png';
 import poke from './files/poke.png';
 import { astro, css, html, info, ireact, js, nodejs } from './files/tech';
+import ExternalLink from './files/ExternalLink.astro';
 
 let techs = {
 	js: {
@@ -46,9 +51,10 @@ let d = [
 			'En (BETA) Crea una sala con amigos y sincronize, controle, transmita un video',
 		iInfo: info.src,
 		buttom: {
-			title: 'GitHub Pages',
-			icon: githubPages.src,
+			title: 'Demo',
+			icon: ExternalLink,
 		},
+		repository_link: 'https://github.com/essence-s/ahiseve',
 	},
 	{
 		imgWeb: bot.src,
@@ -60,8 +66,9 @@ let d = [
 		iInfo: info.src,
 		buttom: {
 			title: 'Pedir Prueba',
-			icon: iconMail.src,
+			icon: IconMail,
 		},
+		// repository_link: 'https://github.com/essence-s',
 	},
 	{
 		imgWeb: p1.src,
@@ -72,9 +79,10 @@ let d = [
 			'El diseño está optimizado para captar la atención de los visitantes en los primeros segundos',
 		iInfo: info.src,
 		buttom: {
-			title: 'GitHub Pages',
-			icon: githubPages.src,
+			title: 'Demo',
+			icon: ExternalLink,
 		},
+		repository_link: 'https://github.com/essence-s/p1',
 	},
 
 	// {
@@ -92,8 +100,8 @@ let d = [
 	// 		'El proyecto calcula el peso ideal de una persona, te dice en que promedio estas.',
 	// 	iInfo: info.src,
 	// 	buttom: {
-	// 		title: 'Github Pages',
-	// 		icon: githubPages.src,
+	// 		title: 'Demo',
+	// 		icon: ExternalLink,
 	// 	},
 	// },
 	{
@@ -104,9 +112,10 @@ let d = [
 		infoText: 'Este proyecto tiene animaciones simples y un diseño bonito.',
 		iInfo: info.src,
 		buttom: {
-			title: 'GitHub Pages',
-			icon: githubPages.src,
+			title: 'Demo',
+			icon: ExternalLink,
 		},
+		repository_link: 'https://github.com/essence-s/darkpan/',
 	},
 	{
 		imgWeb: ds.src,
@@ -116,9 +125,10 @@ let d = [
 		infoText: 'Web con diseño mas empresarial, con slider hero.',
 		iInfo: info.src,
 		buttom: {
-			title: 'GitHub Pages',
-			icon: githubPages.src,
+			title: 'Demo',
+			icon: ExternalLink,
 		},
+		repository_link: 'https://github.com/essence-s/ds/',
 	},
 	{
 		imgWeb: poke.src,
@@ -129,9 +139,10 @@ let d = [
 			'Buscar cualquier pokemon y ver sus estadisticas, evoluciones, etc.',
 		iInfo: info.src,
 		buttom: {
-			title: 'GitHub Pages',
-			icon: githubPages.src,
+			title: 'Demo',
+			icon: ExternalLink,
 		},
+		repository_link: 'https://github.com/essence-s/poke/',
 	},
 ];
 ---
@@ -309,16 +320,17 @@ let d = [
 		color: #c7cfdd;
 	}
 
-	.proyects__separator-linear {
-		width: 100%;
-		height: 1px;
-		background: #626269;
+	.projects__card-footer {
+		display: flex;
+		justify-content: space-around;
+		color: #c7cfdd;
+		align-items: center;
 	}
 	.projects__card-content-button-deploy {
 		gap: 8px;
-		padding: 5px 14px 5px 11px;
-		border: solid 1px #3f3f3f;
-		border-radius: 8px;
+		padding: 6px 14px 6px 11px;
+		border: solid 1px #ffffff17;
+		border-radius: 6px;
 		font-size: 0.85rem;
 		display: flex;
 		align-items: center;
@@ -327,11 +339,33 @@ let d = [
 		box-shadow: 2px 2px 3px 0px #0000001f;
 		margin: auto;
 	}
+	.projects__card-content-button-deploy:hover {
+		background: linear-gradient(90deg, #00000077, #00000079);
+	}
+
+	.projects__card-content-button-github {
+		gap: 8px;
+		padding: 6px 14px 6px 11px;
+		/* border: solid 1px #3f3f3f; */
+		border-radius: 6px;
+		font-size: 0.85rem;
+		display: flex;
+		align-items: center;
+		width: max-content;
+		/* background: linear-gradient(90deg, #0000001c, #00000021); */
+		/* box-shadow: 2px 2px 3px 0px #0000001f; */
+		margin: auto;
+	}
+
+	.projects__card-content-button-github:hover {
+		background: linear-gradient(90deg, #00000077, #00000079);
+	}
 
 	/* .projects__card-content-button-deploy svg { */
-	.projects__card-content-button-deploy img {
-		width: 20px;
-		height: 20px;
+
+	.projects__card .buttom-icon {
+		width: 16px;
+		height: 16px;
 	}
 
 	@media screen and (max-width: 1100px) {
@@ -405,10 +439,28 @@ let d = [
 										<p class="projects__card-content-text">{r.infoText}</p>
 									</div>
 									<div class="projects__card-footer">
+										{r.repository_link && (
+											<a
+												href={r.repository_link}
+												target="_blank"
+												rel="noreferrer"
+											>
+												<div class="projects__card-content-button-github">
+													{/* <img src={r.buttom.icon} /> */}
+													{/* <r.buttom.icon class="buttom-icon" /> */}
+													<Github class="buttom-icon" />
+													<span>GitHub</span>
+												</div>
+											</a>
+										)}
+
 										<a href={r.link} target="_blank" rel="noreferrer">
 											<div class="projects__card-content-button-deploy">
-												<img src={r.buttom.icon} />
+												{/* <img src={r.buttom.icon} /> */}
 												<span>{r.buttom.title}</span>
+												<r.buttom.icon class="buttom-icon" />
+												{/* <ExternalLink class="buttom-icon" /> */}
+												{/* <Github class="buttom-icon" /> */}
 											</div>
 										</a>
 									</div>
