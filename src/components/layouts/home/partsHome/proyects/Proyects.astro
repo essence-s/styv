@@ -46,7 +46,7 @@ let d = [
 			'En (BETA) Crea una sala con amigos y sincronize, controle, transmita un video',
 		iInfo: info.src,
 		buttom: {
-			title: 'Github Pages',
+			title: 'GitHub Pages',
 			icon: githubPages.src,
 		},
 	},
@@ -72,7 +72,7 @@ let d = [
 			'El diseño está optimizado para captar la atención de los visitantes en los primeros segundos',
 		iInfo: info.src,
 		buttom: {
-			title: 'Github Pages',
+			title: 'GitHub Pages',
 			icon: githubPages.src,
 		},
 	},
@@ -104,7 +104,7 @@ let d = [
 		infoText: 'Este proyecto tiene animaciones simples y un diseño bonito.',
 		iInfo: info.src,
 		buttom: {
-			title: 'Github Pages',
+			title: 'GitHub Pages',
 			icon: githubPages.src,
 		},
 	},
@@ -116,7 +116,7 @@ let d = [
 		infoText: 'Web con diseño mas empresarial, con slider hero.',
 		iInfo: info.src,
 		buttom: {
-			title: 'Github Pages',
+			title: 'GitHub Pages',
 			icon: githubPages.src,
 		},
 	},
@@ -129,7 +129,7 @@ let d = [
 			'Buscar cualquier pokemon y ver sus estadisticas, evoluciones, etc.',
 		iInfo: info.src,
 		buttom: {
-			title: 'Github Pages',
+			title: 'GitHub Pages',
 			icon: githubPages.src,
 		},
 	},
@@ -181,7 +181,7 @@ let d = [
 		align-items: center;
 	}
 
-	.proyects__img {
+	.projects__card {
 		border-radius: 8px;
 		transition: 0.3s;
 		display: flex;
@@ -189,12 +189,12 @@ let d = [
 		text-align: start;
 	}
 
-	.proyects__img > a {
+	.projects__card > a {
 		display: flex;
 		position: relative;
 	}
 
-	.proyects__img .proyects__img-web {
+	.projects__card .projects__card-web {
 		width: 93%;
 		height: 100%;
 		border-radius: 8px;
@@ -217,10 +217,10 @@ let d = [
 		}
 	}
 
-	.proyects__info {
-		padding: 20px 34px;
+	.projects__card-content {
+		/* padding: 20px 34px; */
 		display: flex;
-		gap: 18px;
+		gap: 1.5rem;
 		flex-direction: column;
 		background: #28292d;
 		border: 1px #ffffff17 solid;
@@ -229,12 +229,23 @@ let d = [
 		position: relative;
 	}
 
-	.proyects__info > a {
+	.projects__card-header,
+	.projects__card-body,
+	.projects__card-footer {
+		padding: 0 34px;
+	}
+
+	.projects__card-footer {
+		padding: 20px 0;
+		border-top: solid 1px #ffffff17;
+	}
+
+	.projects__card-content > .projects__card-footer a {
 		text-decoration: none;
 		color: inherit;
 	}
 
-	.proyects__img-tech {
+	.projects__card-tech {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 4px 3px;
@@ -242,13 +253,13 @@ let d = [
 		justify-content: center;
 	}
 
-	.proyects__img-tech-img span {
+	.projects__card-tech-img span {
 		width: 18px;
 		height: 18px;
 		display: inline-block;
 	}
 
-	.proyects__img-tech-img {
+	.projects__card-tech-img {
 		padding: 4px 10px;
 		border: solid 1px #3f3f3f;
 		border-radius: 15px;
@@ -261,46 +272,54 @@ let d = [
 		box-shadow: 2px 2px 3px 0px #0000001f;
 	}
 
-	.proyects__img-tech img {
+	.projects__card-tech img {
 		width: 100%;
 	}
 
-	.proyects__info-proyect {
+	.projects__card-content-proyect {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		position: relative;
 	}
 
-	.proyects__info-proyect img {
+	.projects__card-content-proyect img {
 		width: 20px;
 		height: 20px;
 		background: white;
 		border-radius: 50%;
 	}
 
-	.proyects__info-title {
+	.projects__card-content-title {
 		text-align: center;
 		margin: 0;
-		margin-bottom: 13px;
+		margin-bottom: 0.4rem;
 		text-transform: uppercase;
 	}
-	.proyects__info-text {
+	.projects__card-content-text {
 		margin: auto;
 		/* padding: 0 15px; */
 		border-radius: 5px;
 		max-width: 280px;
-		font-size: 0.95rem;
+		/* font-size: 0.95rem; */
 		display: flex;
 		align-items: center;
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+		color: #c7cfdd;
 	}
 
-	.proyects__info-button-deploy {
-		gap: 5px;
-		padding: 4px 10px;
+	.proyects__separator-linear {
+		width: 100%;
+		height: 1px;
+		background: #626269;
+	}
+	.projects__card-content-button-deploy {
+		gap: 8px;
+		padding: 5px 14px 5px 11px;
 		border: solid 1px #3f3f3f;
-		border-radius: 15px;
-		font-size: 0.7rem;
+		border-radius: 8px;
+		font-size: 0.85rem;
 		display: flex;
 		align-items: center;
 		width: max-content;
@@ -309,10 +328,10 @@ let d = [
 		margin: auto;
 	}
 
-	/* .proyects__info-button-deploy svg { */
-	.proyects__info-button-deploy img {
+	/* .projects__card-content-button-deploy svg { */
+	.projects__card-content-button-deploy img {
 		width: 20px;
-		height: 24px;
+		height: 20px;
 	}
 
 	@media screen and (max-width: 1100px) {
@@ -342,7 +361,7 @@ let d = [
 			transform: scale(1.2);
 		}
 
-		.proyects__img-tech-img {
+		.projects__card-tech-img {
 			font-size: 0.8rem;
 		}
 	}
@@ -357,36 +376,42 @@ let d = [
 				{
 					d.map((r, i) => {
 						return (
-							<div class="proyects__img">
+							<div class="projects__card">
 								<a href={r.link} target="_blank" rel="noreferrer">
-									<img class="proyects__img-web" src={r.imgWeb} alt="darkpan" />
+									<img
+										class="projects__card-web"
+										src={r.imgWeb}
+										alt="darkpan"
+									/>
 								</a>
-
-								<div class="proyects__info">
-									<div class="proyects__img-tech">
-										{r.techs.map((tech, i) => {
-											return (
-												<div class="proyects__img-tech-img">
-													<span>
-														<img src={tech.src} alt="" />
-													</span>
-													{tech.name}
-												</div>
-											);
-										})}
-									</div>
-
-									<div>
-										<h3 class="proyects__info-title">{r.title}</h3>
-										<p class="proyects__info-text">{r.infoText}</p>
-									</div>
-
-									<a href={r.link} target="_blank" rel="noreferrer">
-										<div class="proyects__info-button-deploy">
-											<img src={r.buttom.icon} />
-											<span>{r.buttom.title}</span>
+								<div class="projects__card-content">
+									<div class="projects__card-header">
+										<div class="projects__card-tech">
+											{r.techs.map((tech, i) => {
+												return (
+													<div class="projects__card-tech-img">
+														<span>
+															<img src={tech.src} alt="" />
+														</span>
+														{tech.name}
+													</div>
+												);
+											})}
 										</div>
-									</a>
+									</div>
+
+									<div class="projects__card-body">
+										<h3 class="projects__card-content-title">{r.title}</h3>
+										<p class="projects__card-content-text">{r.infoText}</p>
+									</div>
+									<div class="projects__card-footer">
+										<a href={r.link} target="_blank" rel="noreferrer">
+											<div class="projects__card-content-button-deploy">
+												<img src={r.buttom.icon} />
+												<span>{r.buttom.title}</span>
+											</div>
+										</a>
+									</div>
 								</div>
 							</div>
 						);
