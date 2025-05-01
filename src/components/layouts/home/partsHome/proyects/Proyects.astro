@@ -4,11 +4,8 @@ import ahiseve from './files/ahiseve.png';
 import bot from './files/bot-whatsapp.png';
 import darkpan from './files/darkpan.png';
 import ds from './files/ds.png';
-
-// import github from './files/github.svg';
 import Github from './files/Github.astro';
 import IconMail from './files/IconMail.astro';
-// import iconMail from './files/icon-mail.svg';
 import p1 from './files/p1.png';
 import poke from './files/poke.png';
 import { astro, css, html, info, ireact, js, nodejs } from './files/tech';
@@ -346,22 +343,17 @@ let d = [
 	.projects__card-content-button-github {
 		gap: 8px;
 		padding: 6px 14px 6px 11px;
-		/* border: solid 1px #3f3f3f; */
 		border-radius: 6px;
 		font-size: 0.85rem;
 		display: flex;
 		align-items: center;
 		width: max-content;
-		/* background: linear-gradient(90deg, #0000001c, #00000021); */
-		/* box-shadow: 2px 2px 3px 0px #0000001f; */
 		margin: auto;
 	}
 
 	.projects__card-content-button-github:hover {
 		background: linear-gradient(90deg, #00000077, #00000079);
 	}
-
-	/* .projects__card-content-button-deploy svg { */
 
 	.projects__card .buttom-icon {
 		width: 16px;
@@ -446,8 +438,6 @@ let d = [
 												rel="noreferrer"
 											>
 												<div class="projects__card-content-button-github">
-													{/* <img src={r.buttom.icon} /> */}
-													{/* <r.buttom.icon class="buttom-icon" /> */}
 													<Github class="buttom-icon" />
 													<span>GitHub</span>
 												</div>
@@ -456,11 +446,8 @@ let d = [
 
 										<a href={r.link} target="_blank" rel="noreferrer">
 											<div class="projects__card-content-button-deploy">
-												{/* <img src={r.buttom.icon} /> */}
 												<span>{r.buttom.title}</span>
 												<r.buttom.icon class="buttom-icon" />
-												{/* <ExternalLink class="buttom-icon" /> */}
-												{/* <Github class="buttom-icon" /> */}
 											</div>
 										</a>
 									</div>
