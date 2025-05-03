@@ -1,20 +1,20 @@
 ---
-import { IndexBox } from "@components/common";
-import { Footer } from "@components/layouts";
-import { Header, Me, Proyects } from "./partsHome";
+import { IndexBox } from '@components/common';
+import { Footer } from '@components/layouts';
+import { Header, Me, Projects } from './components';
 ---
 
 <style>
-  .home {
-    background: linear-gradient(281deg, #19191a, #1a1a1c);
-    width: 100%;
-    min-height: 100vh;
-  }
+	.home {
+		background: linear-gradient(281deg, #19191a, #1a1a1c);
+		width: 100%;
+		min-height: 100vh;
+	}
 </style>
 <div class="home">
-  <IndexBox client:load />
-  <Header client:load />
-  <Proyects />
-  <Me client:load />
-  <Footer />
+	<IndexBox client:load />
+	<Header client:load />
+	<Projects />
+	<Me client:load />
+	<Footer />
 </div>
