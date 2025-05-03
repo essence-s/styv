@@ -7,11 +7,12 @@ import IconMail from './../files/IconMail.astro';
 import p1 from './../files/p1.png';
 import poke from './../files/poke.png';
 import ApliIMC from './../files/ApliIMC.png';
+import sonqu from './../files/sonqu.png';
+import jhigger from './../files/jhigger.png';
 import {
 	astro,
 	css,
 	html,
-	info,
 	ireact,
 	js,
 	nestjs,
@@ -78,7 +79,6 @@ export const PROJECTS = [
 		title: 'Ahiseve',
 		infoText:
 			'En (BETA) Crea una sala con amigos y sincronize, controle, transmita un video',
-		iInfo: info.src,
 		buttom: {
 			title: 'Demo',
 			icon: ExternalLink,
@@ -92,7 +92,6 @@ export const PROJECTS = [
 		title: 'Bot de WhatsApp',
 		infoText:
 			'Permite buscar y descargar videos en diferentes calidades a traves del bot',
-		iInfo: info.src,
 		buttom: {
 			title: 'Pedir Prueba',
 			icon: IconMail,
@@ -106,7 +105,7 @@ export const PROJECTS = [
 		title: 'Landing Page',
 		infoText:
 			'El diseño está optimizado para captar la atención de los visitantes en los primeros segundos',
-		iInfo: info.src,
+
 		buttom: {
 			title: 'Demo',
 			icon: ExternalLink,
@@ -115,7 +114,7 @@ export const PROJECTS = [
 	},
 
 	{
-		imgWeb: poke.src,
+		imgWeb: sonqu.src,
 		link: 'https://www.sonqu.pe/',
 		techs: [
 			techs.nextjs,
@@ -127,19 +126,17 @@ export const PROJECTS = [
 		title: 'SONQU',
 		infoText:
 			'Una web de recetas de cocina , con un buscador y filtro de categorias',
-		iInfo: info.src,
 		buttom: {
 			title: 'Web',
 			icon: ExternalLink,
 		},
 	},
 	{
-		imgWeb: poke.src,
+		imgWeb: jhigger.src,
 		link: 'https://juegosjhigger.pe/',
 		techs: [techs.nextjs, techs.tailwind],
 		title: 'JHIGGER',
 		infoText: 'Web de juegos recreativos para niños',
-		iInfo: info.src,
 		buttom: {
 			title: 'Web',
 			icon: ExternalLink,
@@ -151,7 +148,6 @@ export const PROJECTS = [
 		techs: [techs.js, techs.html, techs.css, techs.ireact],
 		title: 'Landing Page',
 		infoText: 'Este proyecto tiene animaciones simples y un diseño bonito.',
-		iInfo: info.src,
 		buttom: {
 			title: 'Demo',
 			icon: ExternalLink,
@@ -165,7 +161,6 @@ export const PROJECTS = [
 		techs: [techs.js, techs.html, techs.css, techs.ireact],
 		title: 'Web Empresarial',
 		infoText: 'Web con diseño mas empresarial, con slider hero.',
-		iInfo: info.src,
 		buttom: {
 			title: 'Demo',
 			icon: ExternalLink,
@@ -179,7 +174,6 @@ export const PROJECTS = [
 		title: 'Stats Pokemon',
 		infoText:
 			'Buscar cualquier pokemon y ver sus estadisticas, evoluciones, etc.',
-		iInfo: info.src,
 		buttom: {
 			title: 'Demo',
 			icon: ExternalLink,
@@ -194,7 +188,6 @@ export const PROJECTS = [
 		title: 'PESO IDEAL',
 		infoText:
 			'El proyecto calcula el peso ideal de una persona, te dice en que promedio estas.',
-		iInfo: info.src,
 		buttom: {
 			title: 'Demo',
 			icon: ExternalLink,
@@ -205,6 +198,6 @@ export const PROJECTS = [
 	//   link: "https://essence-s.github.io/video-question/",
 	//   techs: [techs.js, techs.html, techs.css, techs.ireact],
 	//   infoText: 'web - responder las preguntas con un video o audio',
-	//   iInfo: info.src,
+	//
 	// },
 ];
