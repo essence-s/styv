@@ -7,7 +7,20 @@ import IconMail from './../files/IconMail.astro';
 import p1 from './../files/p1.png';
 import poke from './../files/poke.png';
 import ApliIMC from './../files/ApliIMC.png';
-import { astro, css, html, info, ireact, js, nodejs } from './../files/tech';
+import {
+	astro,
+	css,
+	html,
+	info,
+	ireact,
+	js,
+	nestjs,
+	nextjs,
+	nodejs,
+	postgresql,
+	prisma,
+	tailwindcss,
+} from './../files/tech';
 
 const techs = {
 	js: {
@@ -37,23 +50,23 @@ const techs = {
 
 	nextjs: {
 		name: 'next',
-		src: nodejs.src,
+		src: nextjs.src,
 	},
 	tailwind: {
 		name: 'tailwind',
-		src: nodejs.src,
+		src: tailwindcss.src,
 	},
 	nestjs: {
 		name: 'nestjs',
-		src: nodejs.src,
+		src: nestjs.src,
 	},
 	prisma: {
 		name: 'prisma',
-		src: nodejs.src,
+		src: prisma.src,
 	},
 	postgresql: {
 		name: 'postgresql',
-		src: nodejs.src,
+		src: postgresql.src,
 	},
 };
 
