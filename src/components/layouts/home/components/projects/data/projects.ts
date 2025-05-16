@@ -86,33 +86,16 @@ export const PROJECTS = [
 		repository_link: 'https://github.com/essence-s/ahiseve',
 	},
 	{
-		imgWeb: bot.src,
-		link: 'mailto:styv2301@gmail.com',
-		techs: [techs.nodejs],
-		title: 'Bot de WhatsApp',
-		infoText:
-			'Permite buscar y descargar videos en diferentes calidades a traves del bot',
+		imgWeb: jhigger.src,
+		link: 'https://juegosjhigger.pe/',
+		techs: [techs.nextjs, techs.tailwind],
+		title: 'JHIGGER',
+		infoText: 'Web de juegos recreativos para niños',
 		buttom: {
-			title: 'Pedir Prueba',
-			icon: IconMail,
-		},
-		// repository_link: 'https://github.com/essence-s',
-	},
-	{
-		imgWeb: p1.src,
-		link: 'https://essence-s.github.io/p1/',
-		techs: [techs.js, techs.html, techs.css, techs.ireact],
-		title: 'Landing Page',
-		infoText:
-			'El diseño está optimizado para captar la atención de los visitantes en los primeros segundos',
-
-		buttom: {
-			title: 'Demo',
+			title: 'Web',
 			icon: ExternalLink,
 		},
-		repository_link: 'https://github.com/essence-s/p1',
 	},
-
 	{
 		imgWeb: sonqu.src,
 		link: 'https://www.sonqu.pe/',
@@ -131,16 +114,33 @@ export const PROJECTS = [
 			icon: ExternalLink,
 		},
 	},
+
 	{
-		imgWeb: jhigger.src,
-		link: 'https://juegosjhigger.pe/',
-		techs: [techs.nextjs, techs.tailwind],
-		title: 'JHIGGER',
-		infoText: 'Web de juegos recreativos para niños',
+		imgWeb: p1.src,
+		link: 'https://essence-s.github.io/p1/',
+		techs: [techs.js, techs.html, techs.css, techs.ireact],
+		title: 'Landing Page',
+		infoText:
+			'El diseño está optimizado para captar la atención de los visitantes en los primeros segundos',
+
 		buttom: {
-			title: 'Web',
+			title: 'Demo',
 			icon: ExternalLink,
 		},
+		repository_link: 'https://github.com/essence-s/p1',
+	},
+	{
+		imgWeb: bot.src,
+		link: 'mailto:styv2301@gmail.com',
+		techs: [techs.nodejs],
+		title: 'Bot de WhatsApp',
+		infoText:
+			'Permite buscar y descargar videos en diferentes calidades a traves del bot',
+		buttom: {
+			title: 'Pedir Prueba',
+			icon: IconMail,
+		},
+		// repository_link: 'https://github.com/essence-s',
 	},
 	{
 		imgWeb: darkpan.src,
@@ -180,7 +180,6 @@ export const PROJECTS = [
 		},
 		repository_link: 'https://github.com/essence-s/poke/',
 	},
-
 	{
 		imgWeb: ApliIMC.src,
 		link: 'https://essence-s.github.io/ApliIMC/',
