@@ -73,12 +73,14 @@ const techs = {
 
 export const PROJECTS = [
   {
+    slug: 'ahiseve',
     imgWeb: ahiseve.src,
     link: 'https://ahiseve.vercel.app/',
+    // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     techs: [techs.js, techs.html, techs.css, techs.ireact, techs.astro],
     title: 'Ahiseve',
     infoText:
-      'En (BETA) Crea una sala con amigos y sincronize, controle, transmita un video',
+      'En (BETA) Crea una sala con amigos y sincronice, controle, transmita un video',
     buttom: {
       title: 'Demo',
       icon: ExternalLink,
@@ -86,8 +88,10 @@ export const PROJECTS = [
     repository_link: 'https://github.com/essence-s/ahiseve',
   },
   {
+    slug: 'jhigger',
     imgWeb: jhigger.src,
     link: 'https://juegosjhigger.pe/',
+    // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     techs: [techs.nextjs, techs.tailwind],
     title: 'JHIGGER',
     infoText: 'Web de juegos recreativos para niños',
@@ -97,8 +101,10 @@ export const PROJECTS = [
     },
   },
   {
+    slug: 'sonqu',
     imgWeb: sonqu.src,
     link: 'https://www.sonqu.pe/',
+    // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     techs: [
       techs.nextjs,
       techs.tailwind,
@@ -116,8 +122,10 @@ export const PROJECTS = [
   },
 
   {
+    slug: 'landing-page',
     imgWeb: p1.src,
     link: 'https://essence-s.github.io/p1/',
+    // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     techs: [techs.js, techs.html, techs.css, techs.ireact],
     title: 'Landing Page',
     infoText:
@@ -130,8 +138,10 @@ export const PROJECTS = [
     repository_link: 'https://github.com/essence-s/p1',
   },
   {
+    slug: 'bot-whatsapp',
     imgWeb: bot.src,
     link: 'mailto:styv2301@gmail.com',
+    // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     techs: [techs.nodejs],
     title: 'Bot de WhatsApp',
     infoText:
@@ -140,13 +150,14 @@ export const PROJECTS = [
       title: 'Pedir Prueba',
       icon: IconMail,
     },
-    // repository_link: 'https://github.com/essence-s',
   },
   {
+    slug: 'darkpan',
     imgWeb: darkpan.src,
     link: 'https://essence-s.github.io/darkpan/',
+    // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     techs: [techs.js, techs.html, techs.css, techs.ireact],
-    title: 'Landing Page',
+    title: 'Darkpan',
     infoText: 'Este proyecto tiene animaciones simples y un diseño bonito.',
     buttom: {
       title: 'Demo',
@@ -156,8 +167,10 @@ export const PROJECTS = [
   },
 
   {
+    slug: 'web-empresarial',
     imgWeb: ds.src,
     link: 'https://essence-s.github.io/ds/',
+    // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     techs: [techs.js, techs.html, techs.css, techs.ireact],
     title: 'Web Empresarial',
     infoText: 'Web con diseño mas empresarial, con slider hero.',
@@ -168,8 +181,10 @@ export const PROJECTS = [
     repository_link: 'https://github.com/essence-s/ds/',
   },
   {
+    slug: 'stats-pokemon',
     imgWeb: poke.src,
     link: 'https://essence-s.github.io/poke/',
+    // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     techs: [techs.js, techs.html, techs.css, techs.ireact],
     title: 'Stats Pokemon',
     infoText:
@@ -181,8 +196,10 @@ export const PROJECTS = [
     repository_link: 'https://github.com/essence-s/poke/',
   },
   {
+    slug: 'peso-ideal',
     imgWeb: ApliIMC.src,
     link: 'https://essence-s.github.io/ApliIMC/',
+    // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     techs: [techs.js, techs.html, techs.css],
     title: 'PESO IDEAL',
     infoText:

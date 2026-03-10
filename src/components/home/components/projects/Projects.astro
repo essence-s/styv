@@ -1,322 +1,391 @@
 ---
 import { PROJECTS } from './data/projects';
 import Github from './files/Github.astro';
+import ProjectModal from './ProjectModal.astro';
 ---
 
+<script>
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll('[data-slug]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const slug = btn.getAttribute('data-slug');
+        const url = new URL(window.location.href);
+        url.searchParams.set('project', slug!);
+        window.history.pushState({}, '', url);
+
+        const modal = document.querySelector('.project-modal');
+        if (!modal) return;
+
+        const content = modal.querySelector(`[data-project-slug="${slug}"]`);
+        if (content) {
+          modal.classList.add('project-modal--open');
+          content.classList.add('project-modal__content--active');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+  });
+</script>
+
 <style>
-	.proyects {
-		color: var(--color-text);
-		background: linear-gradient(281deg, #19191a, #1a1a1c);
-		min-height: 100vh;
-		display: flex;
-		font-family: 'Poppins', sans-serif;
-	}
+  .proyects {
+    color: var(--color-text);
+    background: linear-gradient(281deg, #19191a, #1a1a1c);
+    min-height: 100vh;
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+  }
 
-	.proyects__container {
-		margin: auto;
-		max-width: 1200px;
-		width: 100%;
-		padding: 100px 60px;
-	}
+  .proyects__container {
+    margin: auto;
+    max-width: 1200px;
+    width: 100%;
+    padding: 100px 60px;
+  }
 
-	.proyects__content {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 55px;
-	}
+  .proyects__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 55px;
+  }
 
-	.proyects__title {
-		font-size: 2.5rem;
-		font-family: var(--font-family);
-	}
+  .proyects__title {
+    font-size: 2.5rem;
+    font-family: var(--font-family);
+  }
 
-	.proyects__zone-info {
-		width: 100px;
-	}
+  .proyects__zone-info {
+    width: 100px;
+  }
 
-	.proyects__illu {
-		/* width: 320px; */
-		/* height: 270px; */
-		/* background: linear-gradient(0deg, #6f70f2, #9b74cd); */
-		border-radius: 15px;
-		display: grid;
-		/* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
-		grid-template-columns: repeat(3, minmax(250px, 1fr));
-		/* padding: 20px 15px 15px 15px; */
-		gap: 30px;
-		align-items: center;
-	}
+  .proyects__illu {
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    gap: 30px;
+    align-items: center;
+  }
 
-	.projects__card {
-		border-radius: 8px;
-		transition: 0.3s;
-		display: flex;
-		flex-direction: column;
-		text-align: start;
-	}
+  .projects__card {
+    border-radius: 8px;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+  }
 
-	.projects__card > a {
-		display: flex;
-		position: relative;
-	}
+  .projects__card > a {
+    display: flex;
+    position: relative;
+  }
 
-	.projects__card .projects__card-web {
-		width: 94%;
-		height: 100%;
-		border-radius: 8px;
-		position: relative;
-		z-index: 1;
-		/* transform: rotate3d(1, 7, 1, 350deg); */
-		animation: floatP 2.5s alternate infinite ease-in-out;
-		margin: auto;
-		box-shadow: 5px 4px 3px 0px #0000001c;
-		top: 37px;
-	}
+  .projects__card .projects__card-web {
+    width: 94%;
+    height: 100%;
+    border-radius: 8px;
+    position: relative;
+    z-index: 1;
+    animation: floatP 2.5s alternate infinite ease-in-out;
+    margin: auto;
+    box-shadow: 5px 4px 3px 0px #0000001c;
+    top: 37px;
+  }
 
-	@keyframes floatP {
-		0% {
-			transform: rotate3d(1, 7, 1, 357deg) translateY(-5px);
-		}
+  @keyframes floatP {
+    0% {
+      transform: rotate3d(1, 7, 1, 357deg) translateY(-5px);
+    }
+    100% {
+      transform: rotate3d(1, 7, 1, 362deg) translateY(-10px);
+    }
+  }
 
-		100% {
-			transform: rotate3d(1, 7, 1, 362deg) translateY(-10px);
-		}
-	}
+  .projects__card-content {
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
+    background: #28292d;
+    border: 1px #ffffff17 solid;
+    border-radius: 8px;
+    padding-top: 50px;
+    position: relative;
+  }
 
-	.projects__card-content {
-		/* padding: 20px 34px; */
-		display: flex;
-		gap: 1.5rem;
-		flex-direction: column;
-		background: #28292d;
-		border: 1px #ffffff17 solid;
-		border-radius: 8px;
-		padding-top: 50px;
-		position: relative;
-	}
+  .projects__card-header,
+  .projects__card-body,
+  .projects__card-footer {
+    padding: 0 34px;
+  }
 
-	.projects__card-header,
-	.projects__card-body,
-	.projects__card-footer {
-		padding: 0 34px;
-	}
+  .projects__card-footer {
+    padding: 20px 0;
+    border-top: solid 1px #ffffff17;
+  }
 
-	.projects__card-footer {
-		padding: 20px 0;
-		border-top: solid 1px #ffffff17;
-	}
+  .projects__card-content > .projects__card-footer a {
+    text-decoration: none;
+    color: inherit;
+  }
 
-	.projects__card-content > .projects__card-footer a {
-		text-decoration: none;
-		color: inherit;
-	}
+  .projects__card-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 3px;
+    color: #cecece;
+    justify-content: center;
+  }
 
-	.projects__card-tech {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 4px 3px;
-		color: #cecece;
-		justify-content: center;
-	}
+  .projects__card-tech-img span {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+  }
 
-	.projects__card-tech-img span {
-		width: 14px;
-		height: 14px;
-		display: inline-block;
-	}
+  .projects__card-tech-img {
+    padding: 5px 12px;
+    border: solid 1px #3f3f3f;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: max-content;
+    background: linear-gradient(271deg, #ffffff12, #ffffff05);
+    box-shadow: 2px 2px 3px 0px #0000001f;
+  }
 
-	.projects__card-tech-img {
-		padding: 5px 12px;
-		border: solid 1px #3f3f3f;
-		border-radius: 15px;
-		font-size: 0.7rem;
-		display: flex;
-		align-items: center;
-		gap: 5px;
-		width: max-content;
-		background: linear-gradient(271deg, #ffffff12, #ffffff05);
-		box-shadow: 2px 2px 3px 0px #0000001f;
-	}
+  .projects__card-tech img {
+    width: 100%;
+    height: 100%;
+  }
 
-	.projects__card-tech img {
-		width: 100%;
-		height: 100%;
-	}
+  .projects__card-content-proyect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
 
-	.projects__card-content-proyect {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		position: relative;
-	}
+  .projects__card-content-proyect img {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+  }
 
-	.projects__card-content-proyect img {
-		width: 20px;
-		height: 20px;
-		background: white;
-		border-radius: 50%;
-	}
+  .projects__card-content-title {
+    text-align: center;
+    margin: 0;
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
 
-	.projects__card-content-title {
-		text-align: center;
-		margin: 0;
-		margin-bottom: 0.4rem;
-		text-transform: uppercase;
-	}
-	.projects__card-content-text {
-		margin: auto;
-		/* padding: 0 15px; */
-		border-radius: 5px;
-		max-width: 280px;
-		/* font-size: 0.95rem; */
-		display: flex;
-		align-items: center;
-		font-size: 0.875rem;
-		line-height: 1.25rem;
-		color: #c7cfdd;
-	}
+  .projects__card-content-title:hover {
+    color: var(--color-button);
+  }
 
-	.projects__card-footer {
-		display: flex;
-		justify-content: space-around;
-		color: #c7cfdd;
-		align-items: center;
-	}
-	.projects__card-content-button-deploy {
-		gap: 8px;
-		padding: 6px 14px 6px 11px;
-		border: solid 1px #ffffff17;
-		border-radius: 6px;
-		font-size: 0.85rem;
-		display: flex;
-		align-items: center;
-		width: max-content;
-		background: linear-gradient(90deg, #0000001c, #00000021);
-		box-shadow: 2px 2px 3px 0px #0000001f;
-		margin: auto;
-	}
-	.projects__card-content-button-deploy:hover {
-		background: linear-gradient(90deg, #00000077, #00000079);
-	}
+  .projects__card-content-text {
+    margin: auto;
+    border-radius: 5px;
+    max-width: 280px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: #c7cfdd;
+  }
 
-	.projects__card-content-button-github {
-		gap: 8px;
-		padding: 6px 14px 6px 11px;
-		border-radius: 6px;
-		font-size: 0.85rem;
-		display: flex;
-		align-items: center;
-		width: max-content;
-		margin: auto;
-	}
+  .projects__card-content-text span {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 
-	.projects__card-content-button-github:hover {
-		background: linear-gradient(90deg, #00000077, #00000079);
-	}
+  .project-inline-link {
+    color: var(--color-button);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-weight: 500;
+    font-size: 0.875rem;
+    /* line-height: 1.25rem; */
+    text-align: center;
+    display: block;
+    padding-top: 1px;
+  }
 
-	.projects__card .buttom-icon {
-		width: 16px;
-		height: 16px;
-	}
+  .project-inline-link:hover {
+    color: #fff;
+  }
 
-	@media screen and (max-width: 1100px) {
-		.proyects__illu {
-			grid-template-columns: repeat(2, minmax(250px, 1fr));
-		}
-	}
+  .projects__card-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 0;
+    padding-bottom: 20px;
+    border-top: none;
+  }
 
-	@media screen and (max-width: 900px) {
-		.proyects__container {
-			padding: 50px 30px;
-		}
+  .projects__card-content-button-deploy {
+    gap: 8px;
+    padding: 6px 14px 6px 11px;
+    border: solid 1px #ffffff17;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    background: linear-gradient(90deg, #0000001c, #00000021);
+    box-shadow: 2px 2px 3px 0px #0000001f;
+    margin: auto;
+  }
 
-		.proyects__content {
-			flex-direction: column;
-		}
+  .projects__card-content-button-deploy:hover {
+    background: linear-gradient(90deg, #00000077, #00000079);
+  }
 
-		.proyects__illu {
-			grid-template-columns: repeat(1, minmax(250px, 1fr));
-		}
+  .projects__card-content-button-github {
+    gap: 8px;
+    padding: 6px 14px 6px 11px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    margin: auto;
+  }
 
-		.proyects__illuImg:hover {
-			transform: scale(1.5);
-		}
+  .projects__card-content-button-github:hover {
+    background: linear-gradient(90deg, #00000077, #00000079);
+  }
 
-		.proyects__illuImg:nth-child(1):hover {
-			transform: scale(1.2);
-		}
+  .projects__card .buttom-icon {
+    width: 16px;
+    height: 16px;
+  }
 
-		.projects__card-tech-img {
-			font-size: 0.8rem;
-		}
-	}
+  @media screen and (max-width: 1100px) {
+    .proyects__illu {
+      grid-template-columns: repeat(2, minmax(250px, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    .proyects__container {
+      padding: 50px 30px;
+    }
+
+    .proyects__content {
+      flex-direction: column;
+    }
+
+    .proyects__illu {
+      grid-template-columns: repeat(1, minmax(250px, 1fr));
+    }
+
+    .proyects__illuImg:hover {
+      transform: scale(1.5);
+    }
+
+    .proyects__illuImg:nth-child(1):hover {
+      transform: scale(1.2);
+    }
+
+    .projects__card-tech-img {
+      font-size: 0.8rem;
+    }
+  }
 </style>
 
-<div class="proyects" id="proyects">
-	<div class="proyects__container">
-		<p class="proyects__title">Proyectos</p>
+<div class='proyects' id='proyects'>
+  <div class='proyects__container'>
+    <p class='proyects__title'>Proyectos</p>
 
-		<div class="proyects__content">
-			<div class="proyects__illu">
-				{
-					PROJECTS.map((r, i) => {
-						return (
-							<div class="projects__card">
-								<a href={r.link} target="_blank" rel="noreferrer">
-									<img
-										class="projects__card-web"
-										src={r.imgWeb}
-										alt={r.title}
-									/>
-								</a>
-								<div class="projects__card-content">
-									<div class="projects__card-header">
-										<div class="projects__card-tech">
-											{r.techs.map((tech, i) => {
-												return (
-													<div class="projects__card-tech-img">
-														<span>
-															<img src={tech.src} alt="" />
-														</span>
-														{tech.name}
-													</div>
-												);
-											})}
-										</div>
-									</div>
+    <div class='proyects__content'>
+      <div class='proyects__illu'>
+        {
+          PROJECTS.map((r) => {
+            return (
+              <div class='projects__card' data-card-slug={r.slug}>
+                <a href={r.link} target='_blank' rel='noreferrer'>
+                  <img
+                    class='projects__card-web'
+                    src={r.imgWeb}
+                    alt={r.title}
+                  />
+                </a>
+                <div class='projects__card-content'>
+                  <div class='projects__card-header'>
+                    <div class='projects__card-tech'>
+                      {r.techs.map((tech) => {
+                        return (
+                          <div class='projects__card-tech-img'>
+                            <span>
+                              <img src={tech.src} alt='' />
+                            </span>
+                            {tech.name}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
 
-									<div class="projects__card-body">
-										<h3 class="projects__card-content-title">{r.title}</h3>
-										<p class="projects__card-content-text">{r.infoText}</p>
-									</div>
-									<div class="projects__card-footer">
-										{r.repository_link && (
-											<a
-												href={r.repository_link}
-												target="_blank"
-												rel="noreferrer"
-											>
-												<div class="projects__card-content-button-github">
-													<Github class="buttom-icon" />
-													<span>GitHub</span>
-												</div>
-											</a>
-										)}
+                  <div class='projects__card-body'>
+                    <a
+                      href='#'
+                      data-slug={r.slug}
+                      class='projects__card-content-title'
+                    >
+                      {r.title}
+                    </a>
+                    <p class='projects__card-content-text'>
+                      <span>{r.infoText}</span>{' '}
+                    </p>
+                    <a href='#' data-slug={r.slug} class='project-inline-link'>
+                      Ver más
+                    </a>
+                  </div>
+                  <div class='projects__card-footer'>
+                    {r.repository_link && (
+                      <a
+                        href={r.repository_link}
+                        target='_blank'
+                        rel='noreferrer'
+                      >
+                        <div class='projects__card-content-button-github'>
+                          <Github class='buttom-icon' />
+                          <span>GitHub</span>
+                        </div>
+                      </a>
+                    )}
 
-										<a href={r.link} target="_blank" rel="noreferrer">
-											<div class="projects__card-content-button-deploy">
-												<span>{r.buttom.title}</span>
-												<r.buttom.icon class="buttom-icon" />
-											</div>
-										</a>
-									</div>
-								</div>
-							</div>
-						);
-					})
-				}
-			</div>
-		</div>
-	</div>
+                    <a href={r.link} target='_blank' rel='noreferrer'>
+                      <div class='projects__card-content-button-deploy'>
+                        <span>{r.buttom.title}</span>
+                        <r.buttom.icon class='buttom-icon' />
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
 </div>
+
+<ProjectModal projects={PROJECTS} />
