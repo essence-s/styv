@@ -12,6 +12,8 @@ import jhigger from './../files/jhigger.png';
 import {
   astro,
   css,
+  electron,
+  expo,
   html,
   ireact,
   js,
@@ -25,49 +27,57 @@ import {
 
 const techs = {
   js: {
-    name: 'javascript',
+    name: 'Javascript',
     src: js.src,
   },
   html: {
-    name: 'html',
+    name: 'Html',
     src: html.src,
   },
   css: {
-    name: 'css',
+    name: 'Css',
     src: css.src,
   },
   ireact: {
-    name: 'react',
+    name: 'React',
     src: ireact.src,
   },
   astro: {
-    name: 'astro',
+    name: 'Astro',
     src: astro.src,
   },
   nodejs: {
-    name: 'node',
+    name: 'Node',
     src: nodejs.src,
   },
 
   nextjs: {
-    name: 'next',
+    name: 'Next',
     src: nextjs.src,
   },
   tailwind: {
-    name: 'tailwind',
+    name: 'Tailwind',
     src: tailwindcss.src,
   },
   nestjs: {
-    name: 'nestjs',
+    name: 'Nestjs',
     src: nestjs.src,
   },
   prisma: {
-    name: 'prisma',
+    name: 'Prisma',
     src: prisma.src,
   },
   postgresql: {
-    name: 'postgresql',
+    name: 'Postgresql',
     src: postgresql.src,
+  },
+  electron: {
+    name: 'Electron',
+    src: electron.src,
+  },
+  expo: {
+    name: 'Expo',
+    src: expo.src,
   },
 };
 
@@ -99,6 +109,21 @@ export const PROJECTS = [
       title: 'Web',
       icon: ExternalLink,
     },
+  },
+  {
+    slug: 'whatsapp-bulk-sender',
+    imgWeb: ahiseve.src,
+    link: 'https://ahiseve.vercel.app/',
+    // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    techs: [techs.electron, techs.expo, techs.tailwind, techs.js, techs.ireact],
+    title: 'WhatsApp Bulk Sender Desktop App',
+    infoText:
+      'Una aplicación de escritorio que permite enviar mensajes de WhatsApp a múltiples contactos al mismo tiempo, incluyendo imágenes, archivos y documentos de forma rápida y sencilla.',
+    buttom: {
+      title: 'Demo',
+      icon: ExternalLink,
+    },
+    repository_link: 'https://github.com/essence-s/ahiseve',
   },
   {
     slug: 'sonqu',

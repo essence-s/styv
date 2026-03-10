@@ -9,17 +9,21 @@ import tailwindcss from './tailwindcss.svg';
 import nestjs from './nestjs.svg';
 import prisma from './prisma.svg';
 import postgresql from './postgresql.svg';
+import electron from './electron.svg';
+import expo from './expo.svg';
 
 export {
-	astro,
-	css,
-	html,
-	ireact,
-	js,
-	nodejs,
-	nextjs,
-	tailwindcss,
-	nestjs,
-	prisma,
-	postgresql,
+  astro,
+  css,
+  html,
+  ireact,
+  js,
+  nodejs,
+  nextjs,
+  tailwindcss,
+  nestjs,
+  prisma,
+  postgresql,
+  electron,
+  expo,
 };
