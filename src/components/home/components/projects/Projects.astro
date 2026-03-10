@@ -122,6 +122,8 @@ import ProjectModal from './ProjectModal.astro';
   .projects__card-footer {
     padding: 20px 0;
     border-top: solid 1px #ffffff17;
+    display: flex;
+    justify-content: space-around;
   }
 
   .projects__card-content > .projects__card-footer a {
@@ -226,18 +228,6 @@ import ProjectModal from './ProjectModal.astro';
   .project-inline-link:hover {
     color: var(--color-button);
   }
-
-  .projects__card-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding-top: 0;
-    padding-bottom: 20px;
-    border-top: none;
-  }
-
   .projects__card-content-button-deploy {
     gap: 8px;
     padding: 6px 14px 6px 11px;
