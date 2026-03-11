@@ -50,12 +50,12 @@ const { imageSrc, videoSrc, title } = Astro.props;
           wrapper.classList.add('project-video-has-video');
           wrapper.innerHTML = `
             <iframe
-              src="${videoSrc}?autoplay=1"
+              src="${videoSrc}?autoplay=1&mute=1&controls=1&rel=0&playsinline=1&iv_load_policy=3&disablekb=1"
               title="Video"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
-              style="width: 100%;height: 100%;"
+              style="width: 100%;height: 100%;border: 0;"
             ></iframe>
           `;
         }
