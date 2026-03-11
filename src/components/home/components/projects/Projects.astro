@@ -1,32 +1,8 @@
 ---
 import { PROJECTS } from './data/projects';
 import Github from './files/Github.astro';
-import ProjectModal from './ProjectModal.astro';
+import ProjectModal from './ProjectModal.tsx';
 ---
-
-<script>
-  document.addEventListener('astro:page-load', () => {
-    document.querySelectorAll('[data-slug]').forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const slug = btn.getAttribute('data-slug');
-        const url = new URL(window.location.href);
-        url.searchParams.set('project', slug!);
-        window.history.pushState({}, '', url);
-
-        const modal = document.querySelector('.project-modal');
-        if (!modal) return;
-
-        const content = modal.querySelector(`[data-project-slug="${slug}"]`);
-        if (content) {
-          modal.classList.add('project-modal--open');
-          content.classList.add('project-modal__content--active');
-          document.body.style.overflow = 'hidden';
-        }
-      });
-    });
-  });
-</script>
 
 <style>
   .proyects {
@@ -334,7 +310,7 @@ import ProjectModal from './ProjectModal.astro';
 
                   <div class='projects__card-body'>
                     <a
-                      href='#'
+                      href='javascript:void(0)'
                       data-slug={r.slug}
                       class='projects__card-content-title'
                     >
@@ -343,7 +319,7 @@ import ProjectModal from './ProjectModal.astro';
                     <p class='projects__card-content-text'>
                       <span>{r.infoText}</span>{' '}
                     </p>
-                    <a href='#' data-slug={r.slug} class='project-inline-link'>
+                    <a href='javascript:void(0)' data-slug={r.slug} class='project-inline-link'>
                       Ver más
                     </a>
                   </div>
@@ -378,4 +354,4 @@ import ProjectModal from './ProjectModal.astro';
   </div>
 </div>
 
-<ProjectModal projects={PROJECTS} />
+<ProjectModal projects={PROJECTS} client:load />
