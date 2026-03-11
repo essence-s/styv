@@ -9,6 +9,7 @@ import poke from './../files/poke.png';
 import ApliIMC from './../files/ApliIMC.png';
 import sonqu from './../files/sonqu.png';
 import jhigger from './../files/jhigger.png';
+import whatsappbsender from './../files/whatsappbsender.png';
 import {
   astro,
   css,
@@ -112,18 +113,18 @@ export const PROJECTS = [
   },
   {
     slug: 'whatsapp-bulk-sender',
-    imgWeb: ahiseve.src,
-    link: 'https://ahiseve.vercel.app/',
-    // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    imgWeb: whatsappbsender.src,
+    link: '#',
+    video: 'https://www.youtube.com/embed/N_6wceSddAg',
     techs: [techs.electron, techs.expo, techs.tailwind, techs.js, techs.ireact],
     title: 'WhatsApp Bulk Sender Desktop App',
     infoText:
       'Una aplicación de escritorio que permite enviar mensajes de WhatsApp a múltiples contactos al mismo tiempo, incluyendo imágenes, archivos y documentos de forma rápida y sencilla.',
     buttom: {
-      title: 'Demo',
+      title: 'Ver Video',
       icon: ExternalLink,
     },
-    repository_link: 'https://github.com/essence-s/ahiseve',
+    repository_link: 'https://github.com/essence-s/school-manager',
   },
   {
     slug: 'sonqu',
@@ -191,20 +192,20 @@ export const PROJECTS = [
     repository_link: 'https://github.com/essence-s/darkpan/',
   },
 
-  {
-    slug: 'web-empresarial',
-    imgWeb: ds.src,
-    link: 'https://essence-s.github.io/ds/',
-    // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-    techs: [techs.js, techs.html, techs.css, techs.ireact],
-    title: 'Web Empresarial',
-    infoText: 'Web con diseño mas empresarial, con slider hero.',
-    buttom: {
-      title: 'Demo',
-      icon: ExternalLink,
-    },
-    repository_link: 'https://github.com/essence-s/ds/',
-  },
+  // {
+  //   slug: 'web-empresarial',
+  //   imgWeb: ds.src,
+  //   link: 'https://essence-s.github.io/ds/',
+  //   // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+  //   techs: [techs.js, techs.html, techs.css, techs.ireact],
+  //   title: 'Web Empresarial',
+  //   infoText: 'Web con diseño mas empresarial, con slider hero.',
+  //   buttom: {
+  //     title: 'Demo',
+  //     icon: ExternalLink,
+  //   },
+  //   repository_link: 'https://github.com/essence-s/ds/',
+  // },
   {
     slug: 'stats-pokemon',
     imgWeb: poke.src,
