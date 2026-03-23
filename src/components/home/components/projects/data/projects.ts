@@ -1,4 +1,4 @@
-import ahiseve from './../files/ahiseve.png';
+import ahiseve from './../files/ahiseve2.png';
 import bot from './../files/bot-whatsapp.png';
 import darkpan from './../files/darkpan.png';
 import ds from './../files/ds.png';
@@ -87,7 +87,7 @@ export const PROJECTS = [
     slug: 'ahiseve',
     imgWeb: ahiseve.src,
     link: 'https://ahiseve.vercel.app/',
-    // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    video: 'https://www.youtube.com/embed/0dwZc8lXNII',
     techs: [techs.js, techs.html, techs.css, techs.ireact, techs.astro],
     title: 'Ahiseve',
     infoText:
