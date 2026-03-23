@@ -285,7 +285,11 @@ import ProjectModal from './ProjectModal.tsx';
           PROJECTS.map((r) => {
             return (
               <div class='projects__card' data-card-slug={r.slug}>
-                <a href={r.link} target='_blank' rel='noreferrer'>
+                <a
+                  href='javascript:void(0)'
+                  data-slug={r.slug}
+                  rel='noreferrer'
+                >
                   <img
                     class='projects__card-web'
                     src={r.imgWeb}
@@ -319,7 +323,11 @@ import ProjectModal from './ProjectModal.tsx';
                     <p class='projects__card-content-text'>
                       <span>{r.infoText}</span>{' '}
                     </p>
-                    <a href='javascript:void(0)' data-slug={r.slug} class='project-inline-link'>
+                    <a
+                      href='javascript:void(0)'
+                      data-slug={r.slug}
+                      class='project-inline-link'
+                    >
                       Ver más
                     </a>
                   </div>
