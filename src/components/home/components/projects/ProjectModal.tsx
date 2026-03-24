@@ -10,6 +10,7 @@ interface Tech {
 interface Buttom {
   title: string;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  link?: string;
 }
 
 interface Project {
@@ -17,7 +18,6 @@ interface Project {
   imgWeb: string;
   title: string;
   infoText: string;
-  link: string;
   video?: string;
   techs: Tech[];
   buttom: Buttom;
@@ -421,7 +421,7 @@ export default function ProjectModal({ projects }: ProjectModalProps) {
                     </a>
                   )}
                   <a
-                    href={selectedProject.link}
+                    href={selectedProject.buttom.link}
                     target='_blank'
                     rel='noreferrer'
                     className='project-action-btn project-action-btn--primary'

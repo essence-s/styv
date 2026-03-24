@@ -105,6 +105,7 @@ import ProjectModal from './ProjectModal.tsx';
   .projects__card-content > .projects__card-footer a {
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
   }
 
   .projects__card-tech {
@@ -345,7 +346,12 @@ import ProjectModal from './ProjectModal.tsx';
                       </a>
                     )}
 
-                    <a href={r.link} target='_blank' rel='noreferrer'>
+                    <a
+                      href={r.buttom.link}
+                      data-slug={!r.buttom.link ? r.slug : undefined}
+                      target='_blank'
+                      rel='noreferrer'
+                    >
                       <div class='projects__card-content-button-deploy'>
                         <span>{r.buttom.title}</span>
                         <r.buttom.icon class='buttom-icon' />

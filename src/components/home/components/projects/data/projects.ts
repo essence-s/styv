@@ -86,7 +86,7 @@ export const PROJECTS = [
   {
     slug: 'ahiseve',
     imgWeb: ahiseve.src,
-    link: 'https://ahiseve.vercel.app/',
+
     video: 'https://www.youtube.com/embed/0dwZc8lXNII',
     techs: [techs.js, techs.html, techs.css, techs.ireact, techs.astro],
     title: 'Ahiseve',
@@ -95,13 +95,13 @@ export const PROJECTS = [
     buttom: {
       title: 'Demo',
       icon: ExternalLink,
+      link: 'https://ahiseve.vercel.app/',
     },
     repository_link: 'https://github.com/essence-s/ahiseve',
   },
   {
     slug: 'jhigger',
     imgWeb: jhigger.src,
-    link: 'https://juegosjhigger.pe/',
     // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     techs: [techs.nextjs, techs.tailwind],
     title: 'JHIGGER',
@@ -109,12 +109,12 @@ export const PROJECTS = [
     buttom: {
       title: 'Web',
       icon: ExternalLink,
+      link: 'https://juegosjhigger.pe/',
     },
   },
   {
     slug: 'whatsapp-bulk-sender',
     imgWeb: whatsappbsender.src,
-    link: '#',
     video: 'https://www.youtube.com/embed/N_6wceSddAg',
     techs: [techs.electron, techs.expo, techs.tailwind, techs.js, techs.ireact],
     title: 'WhatsApp Bulk Sender Desktop App',
@@ -129,7 +129,6 @@ export const PROJECTS = [
   {
     slug: 'sonqu',
     imgWeb: sonqu.src,
-    link: 'https://www.sonqu.pe/',
     // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     techs: [
       techs.nextjs,
@@ -144,13 +143,13 @@ export const PROJECTS = [
     buttom: {
       title: 'Web',
       icon: ExternalLink,
+      link: 'https://www.sonqu.pe/',
     },
   },
 
   {
     slug: 'landing-page',
     imgWeb: p1.src,
-    link: 'https://essence-s.github.io/p1/',
     // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     techs: [techs.js, techs.html, techs.css, techs.ireact],
     title: 'Landing Page',
@@ -160,13 +159,13 @@ export const PROJECTS = [
     buttom: {
       title: 'Demo',
       icon: ExternalLink,
+      link: 'https://essence-s.github.io/p1/',
     },
     repository_link: 'https://github.com/essence-s/p1',
   },
   {
     slug: 'bot-whatsapp',
     imgWeb: bot.src,
-    link: 'mailto:styv2301@gmail.com',
     // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     techs: [techs.nodejs],
     title: 'Bot de WhatsApp',
@@ -175,12 +174,12 @@ export const PROJECTS = [
     buttom: {
       title: 'Pedir Prueba',
       icon: IconMail,
+      link: 'mailto:styv2301@gmail.com',
     },
   },
   {
     slug: 'darkpan',
     imgWeb: darkpan.src,
-    link: 'https://essence-s.github.io/darkpan/',
     // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     techs: [techs.js, techs.html, techs.css, techs.ireact],
     title: 'Darkpan',
@@ -188,6 +187,7 @@ export const PROJECTS = [
     buttom: {
       title: 'Demo',
       icon: ExternalLink,
+      link: 'https://essence-s.github.io/darkpan/',
     },
     repository_link: 'https://github.com/essence-s/darkpan/',
   },
@@ -209,7 +209,6 @@ export const PROJECTS = [
   {
     slug: 'stats-pokemon',
     imgWeb: poke.src,
-    link: 'https://essence-s.github.io/poke/',
     // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     techs: [techs.js, techs.html, techs.css, techs.ireact],
     title: 'Stats Pokemon',
@@ -218,13 +217,13 @@ export const PROJECTS = [
     buttom: {
       title: 'Demo',
       icon: ExternalLink,
+      link: 'https://essence-s.github.io/poke/',
     },
     repository_link: 'https://github.com/essence-s/poke/',
   },
   {
     slug: 'peso-ideal',
     imgWeb: ApliIMC.src,
-    link: 'https://essence-s.github.io/ApliIMC/',
     // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     techs: [techs.js, techs.html, techs.css],
     title: 'PESO IDEAL',
@@ -233,6 +232,7 @@ export const PROJECTS = [
     buttom: {
       title: 'Demo',
       icon: ExternalLink,
+      link: 'https://essence-s.github.io/ApliIMC/',
     },
   },
   // {
