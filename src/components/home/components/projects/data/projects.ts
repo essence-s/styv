@@ -166,7 +166,7 @@ export const PROJECTS = [
   {
     slug: 'bot-whatsapp',
     imgWeb: bot.src,
-    // video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    video: 'https://www.youtube.com/embed/WJa5N7iHHHs',
     techs: [techs.nodejs],
     title: 'Bot de WhatsApp',
     infoText:
