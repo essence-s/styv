@@ -54,7 +54,7 @@ export default function ProjectVideo({
         </>
       ) : (
         <iframe
-          src={`${videoSrc}?autoplay=1&mute=1&controls=1&rel=0&playsinline=1&iv_load_policy=3&disablekb=1`}
+          src={`${videoSrc}?autoplay=1&controls=1&rel=0&playsinline=1&iv_load_policy=3&disablekb=1`}
           title='Video'
           frameBorder='0'
           allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
