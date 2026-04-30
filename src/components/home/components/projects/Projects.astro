@@ -2,6 +2,8 @@
 import { PROJECTS } from './data/projects';
 import Github from './files/Github.astro';
 import ProjectModal from './ProjectModal.tsx';
+import VideoIcon from './files/VideoIcon.astro';
+import InfoIcon from './files/InfoIcon.astro';
 ---
 
 <style>
@@ -206,11 +208,11 @@ import ProjectModal from './ProjectModal.tsx';
     color: var(--color-button);
   }
   .projects__card-content-button-deploy {
-    gap: 8px;
-    padding: 6px 14px 6px 11px;
+    gap: 6px;
+    padding: 5px 12px 5px 10px;
     border: solid 1px #ffffff17;
     border-radius: 6px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     display: flex;
     align-items: center;
     width: max-content;
@@ -224,14 +226,15 @@ import ProjectModal from './ProjectModal.tsx';
   }
 
   .projects__card-content-button-github {
-    gap: 8px;
-    padding: 6px 14px 6px 11px;
+    gap: 6px;
+    padding: 5px 12px 5px 10px;
     border-radius: 6px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     display: flex;
     align-items: center;
     width: max-content;
     margin: auto;
+    border: solid 1px #ffffff17;
   }
 
   .projects__card-content-button-github:hover {
@@ -239,8 +242,27 @@ import ProjectModal from './ProjectModal.tsx';
   }
 
   .projects__card .buttom-icon {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
+  }
+
+  .projects__card-content-button-video {
+    gap: 6px;
+    padding: 5px 12px 5px 10px;
+    border: solid 1px #ffffff17;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    background: linear-gradient(90deg, #0000001c, #00000021);
+    box-shadow: 2px 2px 3px 0px #0000001f;
+    margin: auto;
+    cursor: pointer;
+  }
+
+  .projects__card-content-button-video:hover {
+    background: linear-gradient(90deg, #00000077, #00000079);
   }
 
   @media screen and (max-width: 1100px) {
@@ -333,12 +355,8 @@ import ProjectModal from './ProjectModal.tsx';
                     </a>
                   </div>
                   <div class='projects__card-footer'>
-                    {r.repository_link && (
-                      <a
-                        href={r.repository_link}
-                        target='_blank'
-                        rel='noreferrer'
-                      >
+                    {r.repository && (
+                      <a href={r.repository} target='_blank' rel='noreferrer'>
                         <div class='projects__card-content-button-github'>
                           <Github class='buttom-icon' />
                           <span>GitHub</span>
@@ -346,17 +364,44 @@ import ProjectModal from './ProjectModal.tsx';
                       </a>
                     )}
 
-                    <a
-                      href={r.buttom.link}
-                      data-slug={!r.buttom.link ? r.slug : undefined}
-                      target='_blank'
-                      rel='noreferrer'
-                    >
-                      <div class='projects__card-content-button-deploy'>
-                        <span>{r.buttom.title}</span>
-                        <r.buttom.icon class='buttom-icon' />
+                    <a href='javascript:void(0)' data-slug={r.slug}>
+                      <div class='projects__card-content-button-video'>
+                        {r.video ? (
+                          <>
+                            <VideoIcon class='buttom-icon' />
+                            <span>Video</span>
+                          </>
+                        ) : (
+                          <>
+                            <InfoIcon class='buttom-icon' />
+                            <span>Información</span>
+                          </>
+                        )}
                       </div>
                     </a>
+
+                    {r.demo && (
+                      <a href={r.demo.url} target='_blank' rel='noreferrer'>
+                        <div class='projects__card-content-button-deploy'>
+                          <span>{r.demo.text}</span>
+                          <svg
+                            xmlns='http://www.w3.org/2000/svg'
+                            width='16'
+                            height='16'
+                            viewBox='0 0 24 24'
+                            fill='none'
+                            stroke='currentColor'
+                            stroke-width='2'
+                            stroke-linecap='round'
+                            stroke-linejoin='round'
+                          >
+                            <path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6' />
+                            <polyline points='15 3 21 3 21 9' />
+                            <line x1='10' y1='14' x2='21' y2='3' />
+                          </svg>
+                        </div>
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

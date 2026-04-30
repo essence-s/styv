@@ -6,22 +6,18 @@ interface Tech {
   name: string;
   src: string;
 }
-
-interface Buttom {
-  title: string;
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  link?: string;
-}
-
 interface Project {
   slug: string;
   imgWeb: string;
   title: string;
   infoText: string;
-  video?: string;
   techs: Tech[];
-  buttom: Buttom;
-  repository_link?: string;
+  video?: string;
+  repository?: string;
+  demo?: {
+    text: string;
+    url: string;
+  };
 }
 
 interface ProjectModalProps {
@@ -99,7 +95,7 @@ export default function ProjectModal({ projects }: ProjectModalProps) {
 
   if (!isOpen || !selectedProject) return null;
 
-  console.log(selectedProject.buttom.icon);
+  // console.log(selectedProject.buttom.icon);
 
   return (
     <>
@@ -253,10 +249,10 @@ export default function ProjectModal({ projects }: ProjectModalProps) {
         .project-action-btn {
           display: flex;
           align-items: center;
-          gap: 8px;
-          padding: 8px 16px;
+          gap: 6px;
+          padding: 5px 12px;
           border-radius: 6px;
-          font-size: 0.9rem;
+          font-size: 0.8rem;
           text-decoration: none;
           color: inherit;
           transition: background 0.3s ease;
@@ -281,8 +277,8 @@ export default function ProjectModal({ projects }: ProjectModalProps) {
         }
 
         .project-action-btn__icon {
-          width: 16px;
-          height: 16px;
+          width: 14px;
+          height: 14px;
         }
 
         .project-video {
@@ -409,9 +405,9 @@ export default function ProjectModal({ projects }: ProjectModalProps) {
                 </div>
 
                 <div className='project-modal__actions'>
-                  {selectedProject.repository_link && (
+                  {selectedProject.repository && (
                     <a
-                      href={selectedProject.repository_link}
+                      href={selectedProject.repository}
                       target='_blank'
                       rel='noreferrer'
                       className='project-action-btn'
@@ -420,17 +416,32 @@ export default function ProjectModal({ projects }: ProjectModalProps) {
                       <span>GitHub</span>
                     </a>
                   )}
-                  <a
-                    href={selectedProject.buttom.link}
-                    target='_blank'
-                    rel='noreferrer'
-                    className='project-action-btn project-action-btn--primary'
-                  >
-                    {selectedProject.buttom.icon && (
-                      <selectedProject.buttom.icon className='project-action-btn__icon' />
-                    )}
-                    <span>{selectedProject.buttom.title}</span>
-                  </a>
+                  {selectedProject.demo && (
+                    <a
+                      href={selectedProject.demo.url}
+                      target='_blank'
+                      rel='noreferrer'
+                      className='project-action-btn project-action-btn--primary'
+                    >
+                      <svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        width='16'
+                        height='16'
+                        viewBox='0 0 24 24'
+                        fill='none'
+                        stroke='currentColor'
+                        strokeWidth='2'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        className='project-action-btn__icon'
+                      >
+                        <path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'></path>
+                        <polyline points='15 3 21 3 21 9'></polyline>
+                        <line x1='10' y1='14' x2='21' y2='3'></line>
+                      </svg>
+                      <span>{selectedProject.demo.text}</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
