@@ -11,6 +11,8 @@ import prisma from './prisma.svg';
 import postgresql from './postgresql.svg';
 import electron from './electron.svg';
 import expo from './expo.svg';
+import slint from './slint.svg';
+import rust from './rust.svg';
 
 export {
   astro,
@@ -26,4 +28,6 @@ export {
   postgresql,
   electron,
   expo,
+  slint,
+  rust,
 };
