@@ -7,6 +7,7 @@ import ApliIMC from './../files/ApliIMC.png';
 import sonqu from './../files/sonqu.png';
 import jhigger from './../files/jhigger.png';
 import whatsappbsender from './../files/whatsappbsender.png';
+import barrita from './../files/barrita.png';
 import {
   astro,
   css,
@@ -21,6 +22,8 @@ import {
   postgresql,
   prisma,
   tailwindcss,
+  slint,
+  rust,
 } from '../files/tech';
 
 const techs = {
@@ -37,6 +40,8 @@ const techs = {
   postgresql: { name: 'Postgresql', src: postgresql.src },
   electron: { name: 'Electron', src: electron.src },
   expo: { name: 'Expo', src: expo.src },
+  slint: { name: 'Slint', src: slint.src },
+  rust: { name: 'Rust', src: rust.src },
 };
 
 export const PROJECTS = [
@@ -50,6 +55,16 @@ export const PROJECTS = [
     video: 'https://www.youtube.com/embed/0dwZc8lXNII',
     repository: 'https://github.com/essence-s/ahiseve',
     demo: { text: 'Demo', url: 'https://ahiseve.vercel.app/' },
+  },
+  {
+    slug: 'statusbar',
+    imgWeb: barrita.src,
+    title: 'Barrita',
+    infoText: 'Una barra de estado para mostrar informacion basica del sistema',
+    techs: [techs.rust, techs.slint],
+    // video: 'https://www.youtube.com/embed/0dwZc8lXNII',
+    repository: 'https://github.com/essence-s/barrita',
+    // demo: { text: 'Demo', url: 'https://ahiseve.vercel.app/' },
   },
   {
     slug: 'jhigger',
