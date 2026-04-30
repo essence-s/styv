@@ -70,7 +70,8 @@ export const PROJECTS = [
     slug: 'jhigger',
     imgWeb: jhigger.src,
     title: 'JHIGGER',
-    infoText: 'Web de juegos recreativos para niños',
+    infoText:
+      'Web de juegos recreativos para niños con seccion de catalogo donde se muestra imagenes e información',
     techs: [techs.nextjs, techs.tailwind],
     demo: { text: 'Demo', url: 'https://juegosjhigger.pe/' },
   },
