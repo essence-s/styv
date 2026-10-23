@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useRef } from "react";
-import "./indexBox.css";
+import styles from "./indexBox.module.css";
 import { motion } from "framer-motion";
 import { container, item } from "@utils/frameMotion";
 
@@ -8,11 +8,13 @@ const IndexBox = () => {
   let contentLinks = useRef();
   const cap = () => {
     let links = contentLinks.current.querySelectorAll("a");
+    const shapeClass = styles["indexbox__shape"];
+    const activeClass = styles["ib-shape-view"];
 
     let indiClick = true;
     let indiEleme;
     window.addEventListener("scroll", () => {
-      let data = ["home", "proyects", "me"];
+      let data = ["home", "proyects", "about"];
       let scrollT = document.documentElement.scrollTop + 200;
 
       data.forEach((r) => {
@@ -28,14 +30,14 @@ const IndexBox = () => {
 
         if (!indiClick) return;
 
-        links.forEach((item, ind) => {
-          item
-            .querySelector(".indexbox__shape")
-            .classList.remove("ib-shape-view");
-          if (item.getAttribute("href") === `#${r}`) {
-            item
-              .querySelector(".indexbox__shape")
-              .classList.add("ib-shape-view");
+        links.forEach((link, ind) => {
+          link
+            .querySelector(`.${shapeClass}`)
+            .classList.remove(activeClass);
+          if (link.getAttribute("href") === `#${r}`) {
+            link
+              .querySelector(`.${shapeClass}`)
+              .classList.add(activeClass);
             indiClick = false;
           }
         });
@@ -49,29 +51,29 @@ const IndexBox = () => {
 
   return (
     <motion.div
-      className="indexbox"
+      className={styles.indexbox}
       ref={contentLinks}
       variants={container}
       initial="hidden"
       animate="show"
     >
       <a href="#home">
-        <motion.div variants={item} className="indexbox__item">
-          <div className="indexbox__shape ib-shape-view">
+        <motion.div variants={item} className={styles["indexbox__item"]}>
+          <div className={`${styles["indexbox__shape"]} ${styles["ib-shape-view"]}`}>
             {/* <div className="indexbox__shape-inside"></div> */}
           </div>
         </motion.div>
       </a>
       <a href="#proyects">
-        <motion.div variants={item} className="indexbox__item">
-          <div className="indexbox__shape">
+        <motion.div variants={item} className={styles["indexbox__item"]}>
+          <div className={styles["indexbox__shape"]}>
             {/* <div className="indexbox__shape-inside"></div> */}
           </div>
         </motion.div>
       </a>
-      <a href="#me">
-        <motion.div variants={item} className="indexbox__item">
-          <div className="indexbox__shape">
+      <a href="#about">
+        <motion.div variants={item} className={styles["indexbox__item"]}>
+          <div className={styles["indexbox__shape"]}>
             {/* <div className="indexbox__shape-inside"></div> */}
           </div>
         </motion.div>

@@ -1,40 +1,40 @@
-import './header.css';
+import styles from './header.module.css';
 import bgheader from './files/bg21.jpg';
 import { telegram, github, twitter, linkedin } from '@assets/iconSR';
 import { motion } from 'framer-motion';
 import { container, item } from '@utils/frameMotion';
-import { Scene } from '@components/common';
+import Scene from './Scene/Scene';
 
 const Header = () => {
 	return (
 		<motion.div
-			className="header"
+			className={styles.header}
 			id="home"
 			variants={container}
 			initial="hidden"
 			animate="show"
 		>
-			<img className="header__imgBG" src={bgheader.src} alt="fondojapon" />
+			<img className={styles['header__imgBG']} src={bgheader.src} alt="fondojapon" />
 
-			<div className="header__container">
-				<div className="header__content">
-					<div className="header__title">
-						<motion.p variants={item} className="header__title-1">
+			<div className={styles['header__container']}>
+				<div className={styles['header__content']}>
+					<div className={styles['header__title']}>
+						<motion.p variants={item} className={styles['header__title-1']}>
 							Hola 🖐
 						</motion.p>
-						<motion.p variants={item} className="header__title-2">
+						<motion.p variants={item} className={styles['header__title-2']}>
 							Soy Styven
 						</motion.p>
-						<motion.p variants={item} className="header__title-3">
+						<motion.p variants={item} className={styles['header__title-3']}>
 							Full Stack Developer
 						</motion.p>
 					</div>
-					<motion.div className="header__description" variants={item}>
+					<motion.div className={styles['header__description']} variants={item}>
 						Creando interfaces atractivas y funcionales 🍃🍂✨
 					</motion.div>
 
-					<motion.div className="header__redes" variants={container}>
-						<motion.div className="header__redes-content" variants={item}>
+					<motion.div className={styles['header__redes']} variants={container}>
+						<motion.div className={styles['header__redes-content']} variants={item}>
 							<a
 								href="https://www.linkedin.com/in/styven-huamani-corahua-ba7940244/"
 								target="_blank"
@@ -44,7 +44,7 @@ const Header = () => {
 							</a>
 						</motion.div>
 
-						<motion.div className="header__redes-content" variants={item}>
+						<motion.div className={styles['header__redes-content']} variants={item}>
 							<a
 								href="https://github.com/essence-s"
 								target="_blank"
@@ -54,7 +54,7 @@ const Header = () => {
 							</a>
 						</motion.div>
 
-						<motion.div className="header__redes-content" variants={item}>
+						<motion.div className={styles['header__redes-content']} variants={item}>
 							<a
 								href="https://twitter.com/23Styv"
 								target="_blank"
@@ -64,7 +64,7 @@ const Header = () => {
 							</a>
 						</motion.div>
 
-						<motion.div className="header__redes-content" variants={item}>
+						<motion.div className={styles['header__redes-content']} variants={item}>
 							<a
 								href="tg://resolve?domain=souma2299"
 								target="_blank"
@@ -77,7 +77,7 @@ const Header = () => {
 				</div>
 			</div>
 
-			<motion.div className="header__scene" variants={item}>
+			<motion.div className={styles['header__scene']} variants={item}>
 				<Scene></Scene>
 			</motion.div>
 		</motion.div>

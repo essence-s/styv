@@ -1,11 +1,11 @@
-.me {
+.about {
   background: linear-gradient(281deg, #19191a, #1a1a1c);
   min-height: 100vh;
   display: flex;
   align-items: center;
 }
 
-.me__container {
+.about__container {
   padding: 100px 30px;
   width: 100%;
   display: flex;
@@ -14,33 +14,33 @@
   gap: 50px;
 }
 
-.me__info {
+.about__info {
   color: var(--color-text);
   max-width: 300px;
   font-family: var(--font-family-1);
 }
 
-.me__title {
+.about__title {
   font-size: 2.5rem;
   font-family: var(--font-family);
   margin-top: 0;
 }
 
-.me__technologies {
+.about__technologies {
   font-weight: 600;
   text-transform: uppercase;
 }
 
-.me__illu {
+.about__illu {
   width: 320px;
 }
 
-.me__illu img {
+.about__illu img {
   width: 100%;
 }
 
 @media screen and (max-width: 700px) {
-  .me__container {
+  .about__container {
     flex-direction: column;
     padding: 50px 30px;
   }

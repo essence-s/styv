@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import "./scene2.css";
+import styles from "./scene2.module.css";
 import * as THREE from "three";
 // import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import sheet from './files/i2.png'
@@ -132,7 +132,7 @@ const Scene2 = () => {
     resize();
   }, []);
 
-  return <div ref={currentRef} className="scene2"></div>;
+  return <div ref={currentRef} className={styles.scene2}></div>;
 };
 
 export default Scene2;

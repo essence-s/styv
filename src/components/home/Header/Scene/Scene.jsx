@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import "./scene.css";
+import styles from "./scene.module.css";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 // import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -147,7 +147,7 @@ const Scene = () => {
     resize();
   }, []);
 
-  return <div ref={currentRef} className="scene"></div>;
+  return <div ref={currentRef} className={styles.scene}></div>;
 };
 
 export default Scene;

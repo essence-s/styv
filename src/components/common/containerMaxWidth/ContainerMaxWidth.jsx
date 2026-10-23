@@ -1,12 +1,12 @@
 import React  from "react";
-import './containerMaxWidth.css';
+import styles from './containerMaxWidth.module.css';
 
 const ContainerMaxWidth =({children,className})=>{
     return(
         <>
             {/* <div className={'containerMaxWidth_color '+className} > */}
 
-                <div className={'containerMaxWidth '+ className}>
+                <div className={`${styles.containerMaxWidth} ${className}`}>
                     {children}
                 </div>
 
