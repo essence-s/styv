@@ -1,0 +1,754 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import PageTopbar from '../../components/projects/PageTopbar.astro';
+import ProjectCard from '../../components/projects/ProjectCard.astro';
+import StatusBadge from '../../components/projects/StatusBadge.astro';
+import TechPill from '../../components/projects/TechPill.astro';
+import ModulePreview from '../../components/projects/ModulePreview.astro';
+import {
+  PROJECTS,
+  PROJECT_TYPE_LABELS,
+  type Project,
+} from '../../data/projects';
+import { withBase } from '../../utils/routes';
+
+export function getStaticPaths() {
+  return PROJECTS.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const coverImage = project.cover.src.startsWith(base.replace(/\/$/, ''))
+  ? project.cover.src
+  : `${base}${project.cover.src.replace(/^\//, '')}`;
+
+const related = PROJECTS.filter((item) => item.slug !== project.slug).slice(
+  0,
+  3
+);
+const demoLabel = project.links.demo?.startsWith('mailto:')
+  ? 'Contacto'
+  : 'Ver demo';
+const catalogUrl = withBase('/proyectos/');
+---
+
+<Layout
+  title={`${project.title} | Styv`}
+  description={project.tagline}
+  image={coverImage}
+>
+  <PageTopbar />
+
+  <main class='detail'>
+    <div class='detail__container'>
+      <a class='detail__back' href={catalogUrl}>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          width='14'
+          height='14'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          stroke-width='2'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          aria-hidden='true'
+        >
+          <path d='M19 12H5'></path>
+          <path d='m12 19-7-7 7-7'></path>
+        </svg>
+        Volver a proyectos
+      </a>
+
+      <header class='detail__hero'>
+        <div class='detail__hero-text'>
+          <p class='detail__eyebrow'>
+            {PROJECT_TYPE_LABELS[project.type]}
+            {
+              project.modules && (
+                <span> · Suite de {project.modules.length} módulos</span>
+              )
+            }
+          </p>
+          <h1 class='detail__title'>{project.title}</h1>
+          <p class='detail__tagline'>{project.tagline}</p>
+
+          <div class='detail__meta'>
+            <StatusBadge status={project.status} />
+            <div class='detail__techs'>
+              {project.techs.map((tech) => <TechPill tech={tech} />)}
+            </div>
+          </div>
+
+          <div class='detail__actions'>
+            {
+              project.links.demo && (
+                <a
+                  class='detail__action detail__action--primary'
+                  href={project.links.demo}
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  {demoLabel}
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='15'
+                    height='15'
+                    viewBox='0 0 24 24'
+                    fill='none'
+                    stroke='currentColor'
+                    stroke-width='2'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                    aria-hidden='true'
+                  >
+                    <path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6' />
+                    <polyline points='15 3 21 3 21 9' />
+                    <line x1='10' y1='14' x2='21' y2='3' />
+                  </svg>
+                </a>
+              )
+            }
+            {
+              project.links.repo && (
+                <a
+                  class='detail__action'
+                  href={project.links.repo}
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='15'
+                    height='15'
+                    viewBox='0 0 24 24'
+                    fill='none'
+                    stroke='currentColor'
+                    stroke-width='2'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                    aria-hidden='true'
+                  >
+                    <path d='M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4' />
+                    <path d='M9 18c-4.51 2-5-2-7-2' />
+                  </svg>
+                  Ver código
+                </a>
+              )
+            }
+            {
+              project.links.video && (
+                <a class='detail__action' href='#video'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='15'
+                    height='15'
+                    viewBox='0 0 24 24'
+                    fill='currentColor'
+                    aria-hidden='true'
+                  >
+                    <polygon points='5 3 19 12 5 21 5 3' />
+                  </svg>
+                  Ver video
+                </a>
+              )
+            }
+          </div>
+        </div>
+
+        <div class='detail__cover'>
+          <span class='detail__cover-glow' aria-hidden='true'></span>
+          <Image
+            src={project.cover}
+            alt={project.coverAlt}
+            widths={[600, 900, 1200, 1600]}
+            sizes='(max-width: 900px) 100vw, 900px'
+            loading='eager'
+            decoding='async'
+          />
+        </div>
+      </header>
+
+      <div class='detail__content'>
+        <section class='detail__about'>
+          <p class='detail__section-label'>Sobre el proyecto</p>
+          <p class='detail__description'>{project.description}</p>
+
+          {
+            project.highlights && (
+              <ul class='detail__highlights'>
+                {project.highlights.map((highlight) => (
+                  <li>{highlight}</li>
+                ))}
+              </ul>
+            )
+          }
+        </section>
+
+        <aside class='detail__aside'>
+          <div class='detail__fact'>
+            <span>Tipo</span>
+            <strong>{PROJECT_TYPE_LABELS[project.type]}</strong>
+          </div>
+          <div class='detail__fact'>
+            <span>Estado</span>
+            <StatusBadge status={project.status} />
+          </div>
+          <div class='detail__fact'>
+            <span>Stack</span>
+            <div class='detail__fact-techs'>
+              {project.techs.map((tech) => <TechPill tech={tech} compact />)}
+            </div>
+          </div>
+          {
+            project.modules && (
+              <div class='detail__fact'>
+                <span>Incluye</span>
+                <strong>{project.modules.length} módulos</strong>
+              </div>
+            )
+          }
+        </aside>
+      </div>
+
+      {
+        project.modules && (
+          <section class='detail__modules' aria-labelledby='modules-title'>
+            <div class='detail__section-head'>
+              <div>
+                <p class='detail__section-label'>La suite</p>
+                <h2 id='modules-title'>Módulos de {project.title}</h2>
+              </div>
+              <p>
+                Cada pieza funciona sola, pero juntas forman un mismo entorno de
+                escritorio.
+              </p>
+            </div>
+
+            <div class='detail__modules-grid'>
+              {project.modules.map((module) => (
+                <article class='module-card'>
+                  <ModulePreview variant={module.icon} />
+                  <div class='module-card__body'>
+                    <h3>{module.name}</h3>
+                    <p>{module.description}</p>
+                    {module.techs && (
+                      <div class='module-card__techs'>
+                        {module.techs.map((tech) => (
+                          <TechPill tech={tech} compact />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        project.links.video && (
+          <section
+            class='detail__video'
+            id='video'
+            aria-labelledby='video-title'
+          >
+            <div class='detail__section-head'>
+              <div>
+                <p class='detail__section-label'>Demo</p>
+                <h2 id='video-title'>Verlo en movimiento</h2>
+              </div>
+            </div>
+            <div class='detail__video-frame'>
+              <iframe
+                src={project.links.video}
+                title={`Video de ${project.title}`}
+                loading='lazy'
+                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                allowfullscreen
+              />
+            </div>
+          </section>
+        )
+      }
+
+      <section class='detail__related'>
+        <div class='detail__section-head'>
+          <div>
+            <p class='detail__section-label'>Sigue explorando</p>
+            <h2>Otros proyectos</h2>
+          </div>
+          <a class='detail__all-link' href={catalogUrl}>
+            Ver todos
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              width='15'
+              height='15'
+              viewBox='0 0 24 24'
+              fill='none'
+              stroke='currentColor'
+              stroke-width='2'
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              aria-hidden='true'
+            >
+              <path d='M5 12h14'></path>
+              <path d='m12 5 7 7-7 7'></path>
+            </svg>
+          </a>
+        </div>
+
+        <div class='detail__related-grid'>
+          {
+            related.map((item) => (
+              <ProjectCard project={item} variant='vertical' />
+            ))
+          }
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .detail {
+    color: var(--color-text);
+    background:
+      radial-gradient(55% 40% at 75% 0%, #ef877e0e, transparent 62%),
+      linear-gradient(281deg, #19191a, #1a1a1c);
+    font-family: var(--font-family-1);
+  }
+
+  .detail__container {
+    width: 100%;
+    max-width: 1120px;
+    margin: auto;
+    padding: 54px 60px 110px;
+  }
+
+  .detail__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 44px;
+    color: #a3a4ac;
+    font-size: 0.76rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .detail__back:hover {
+    color: #f0f0f2;
+  }
+
+  .detail__hero {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .detail__eyebrow {
+    margin: 0 0 12px;
+    color: var(--color-button);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .detail__eyebrow span {
+    color: #8f9098;
+  }
+
+  .detail__title {
+    margin: 0;
+    font-family: var(--font-family);
+    font-size: clamp(4rem, 9vw, 7rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 0.8;
+    text-transform: uppercase;
+  }
+
+  .detail__tagline {
+    max-width: 44ch;
+    margin: 22px 0 0;
+    color: #c0c1c8;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .detail__meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .detail__techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .detail__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 26px;
+  }
+
+  .detail__action {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 14px;
+    border: 1px solid #ffffff17;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #0000001c, #00000021);
+    box-shadow: 2px 2px 3px 0 #0000001f;
+    color: #d5d6db;
+    font-size: 0.78rem;
+    text-decoration: none;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .detail__action:hover {
+    border-color: #ffffff2d;
+    background: #00000045;
+    color: #ffffff;
+  }
+
+  .detail__action--primary {
+    border-color: #ef877e66;
+    background: #ef877e18;
+    color: #ffc9c4;
+  }
+
+  .detail__action--primary:hover {
+    border-color: #ef877e99;
+    background: #ef877e2c;
+    color: #ffffff;
+  }
+
+  .detail__cover {
+    position: relative;
+    isolation: isolate;
+    padding: 22px;
+    border: 1px solid #ffffff12;
+    border-radius: 14px;
+    background:
+      radial-gradient(90% 90% at 50% 0%, #ffffff0c, transparent 60%),
+      linear-gradient(160deg, #202126, #16171a);
+    box-shadow: 0 30px 80px -50px #000;
+  }
+
+  .detail__cover-glow {
+    position: absolute;
+    inset: 15% 8% 4%;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, #ef877e30, transparent 75%);
+    filter: blur(26px);
+  }
+
+  .detail__cover :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ffffff17;
+    border-radius: 8px;
+    box-shadow: 10px 18px 40px -18px #000000cc;
+  }
+
+  .detail__content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 250px;
+    gap: 48px;
+    margin-top: 70px;
+    padding-top: 40px;
+    border-top: 1px solid #ffffff0f;
+  }
+
+  .detail__section-label {
+    margin: 0 0 10px;
+    color: var(--color-button);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .detail__description {
+    max-width: 66ch;
+    margin: 0;
+    color: #b9bcc4;
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .detail__highlights {
+    display: grid;
+    gap: 10px;
+    margin: 28px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .detail__highlights li {
+    position: relative;
+    padding-left: 18px;
+    color: #c9cad0;
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+
+  .detail__highlights li::before {
+    content: '';
+    position: absolute;
+    top: 0.55em;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 1px;
+    background: var(--color-button);
+    transform: rotate(45deg);
+  }
+
+  .detail__aside {
+    align-self: start;
+    padding: 20px;
+    border: 1px solid #ffffff12;
+    border-radius: 10px;
+    background: #ffffff05;
+  }
+
+  .detail__fact {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 12px 0;
+    border-bottom: 1px solid #ffffff0b;
+  }
+
+  .detail__fact:first-child {
+    padding-top: 0;
+  }
+
+  .detail__fact span {
+    color: #82838c;
+    font-size: 0.64rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .detail__fact strong {
+    color: #e4e4e8;
+    font-size: 0.83rem;
+    font-weight: 500;
+  }
+
+  .detail__fact-techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .detail__modules,
+  .detail__video,
+  .detail__related {
+    margin-top: 80px;
+  }
+
+  .detail__section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #ffffff0f;
+  }
+
+  .detail__section-head h2 {
+    margin: 0;
+    font-family: var(--font-family);
+    font-size: clamp(2.2rem, 4vw, 3.3rem);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+
+  .detail__section-head > p {
+    max-width: 360px;
+    margin: 0;
+    color: #8f9098;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    text-align: right;
+  }
+
+  .detail__modules-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .module-card {
+    overflow: hidden;
+    border: 1px solid #ffffff12;
+    border-radius: 12px;
+    background: #26272b;
+  }
+
+  .module-card :global(.module-preview) {
+    border: 0;
+    border-bottom: 1px solid #ffffff0f;
+    border-radius: 0;
+  }
+
+  .module-card__body {
+    padding: 18px 20px 20px;
+  }
+
+  .module-card__body h3 {
+    margin: 0 0 6px;
+    color: #f0f0f2;
+    font-family: var(--font-family);
+    font-size: 1.7rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .module-card__body p {
+    margin: 0;
+    color: #b2b3bb;
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+
+  .module-card__techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 12px;
+  }
+
+  .detail__video-frame {
+    overflow: hidden;
+    border: 1px solid #ffffff14;
+    border-radius: 12px;
+    background: #000;
+    box-shadow: 0 24px 60px -40px #000;
+  }
+
+  .detail__video-frame iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+  }
+
+  .detail__all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #f0d7d3;
+    font-size: 0.76rem;
+    text-decoration: none;
+  }
+
+  .detail__all-link:hover {
+    color: var(--color-button);
+  }
+
+  .detail__related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  @media (max-width: 960px) {
+    .detail__container {
+      padding: 44px 34px 90px;
+    }
+
+    .detail__hero {
+      grid-template-columns: 1fr;
+      gap: 34px;
+    }
+
+    .detail__cover {
+      max-width: 720px;
+    }
+
+    .detail__content {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .detail__aside {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 20px;
+    }
+
+    .detail__fact:nth-child(2) {
+      padding-top: 0;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .detail__container {
+      padding: 34px 20px 70px;
+    }
+
+    .detail__title {
+      font-size: clamp(3.4rem, 16vw, 5rem);
+    }
+
+    .detail__cover {
+      padding: 12px;
+    }
+
+    .detail__modules-grid,
+    .detail__related-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .detail__section-head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .detail__section-head > p {
+      text-align: left;
+    }
+
+    .detail__aside {
+      grid-template-columns: 1fr;
+    }
+
+    .detail__fact:nth-child(2) {
+      padding-top: 12px;
+    }
+  }
+</style>

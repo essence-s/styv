@@ -1,0 +1,405 @@
+---
+interface Props {
+  variant: 'bar' | 'wallpaper' | 'dock' | 'menu';
+}
+
+const { variant } = Astro.props;
+---
+
+<div class:list={['module-preview', `module-preview--${variant}`]} aria-hidden='true'>
+  {
+    variant === 'bar' && (
+      <div class='bar'>
+        <div class='bar__group'>
+          <span class='bar__dot bar__dot--accent' />
+          <span class='bar__dot' />
+          <span class='bar__dot' />
+        </div>
+        <div class='bar__pill'>
+          <span />
+          <span />
+          <span />
+        </div>
+        <div class='bar__group'>
+          <span class='bar__mini' />
+          <span class='bar__mini' />
+          <span class='bar__time'>21:04</span>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    variant === 'wallpaper' && (
+      <div class='wallpapers'>
+        <div class='wallpapers__head'>
+          <span>Wallpapers</span>
+          <span class='wallpapers__badge'>12</span>
+        </div>
+        <div class='wallpapers__grid'>
+          <span class='wallpapers__tile wallpapers__tile--a is-active' />
+          <span class='wallpapers__tile wallpapers__tile--b' />
+          <span class='wallpapers__tile wallpapers__tile--c' />
+          <span class='wallpapers__tile wallpapers__tile--d' />
+          <span class='wallpapers__tile wallpapers__tile--e' />
+          <span class='wallpapers__tile wallpapers__tile--f' />
+        </div>
+      </div>
+    )
+  }
+
+  {
+    variant === 'dock' && (
+      <div class='dock-wrap'>
+        <div class='dock'>
+          <span class='dock__app dock__app--red' />
+          <span class='dock__app dock__app--amber' />
+          <span class='dock__app dock__app--blue' />
+          <span class='dock__app dock__app--green' />
+          <span class='dock__sep' />
+          <span class='dock__app dock__app--violet' />
+          <span class='dock__app dock__app--pink' />
+        </div>
+        <span class='dock__label'>Dock</span>
+      </div>
+    )
+  }
+
+  {
+    variant === 'menu' && (
+      <div class='menu'>
+        <div class='menu__head'>
+          <span class='menu__avatar' />
+          <span class='menu__name'>Styv</span>
+        </div>
+        <div class='menu__row'>
+          <span class='menu__icon' />
+          <span class='menu__line' />
+          <span class='menu__switch is-on' />
+        </div>
+        <div class='menu__row'>
+          <span class='menu__icon' />
+          <span class='menu__line menu__line--short' />
+          <span class='menu__switch' />
+        </div>
+        <div class='menu__row'>
+          <span class='menu__icon' />
+          <span class='menu__line menu__line--mid' />
+          <span class='menu__switch is-on' />
+        </div>
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .module-preview {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    padding: 18px;
+    border: 1px solid #ffffff12;
+    border-radius: 10px;
+    background:
+      radial-gradient(80% 100% at 50% 0%, #ffffff0b, transparent 60%),
+      linear-gradient(160deg, #1b1c20, #141518);
+  }
+
+  .module-preview::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(#ffffff05 1px, transparent 1px),
+      linear-gradient(90deg, #ffffff05 1px, transparent 1px);
+    background-size: 22px 22px;
+    mask-image: radial-gradient(70% 70% at 50% 50%, #000, transparent);
+  }
+
+  /* Status bar */
+  .bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 7px 10px;
+    border: 1px solid #ffffff14;
+    border-radius: 7px;
+    background: #202126ed;
+    box-shadow: 0 10px 24px -12px #000;
+  }
+
+  .bar__group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .bar__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #6b6c75;
+  }
+
+  .bar__dot--accent {
+    background: #ef877e;
+  }
+
+  .bar__pill {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: #ffffff0a;
+  }
+
+  .bar__pill span {
+    width: 18px;
+    height: 4px;
+    border-radius: 999px;
+    background: #5b5c66;
+  }
+
+  .bar__pill span:first-child {
+    background: #ef877e;
+  }
+
+  .bar__mini {
+    width: 9px;
+    height: 9px;
+    border: 1px solid #6b6c75;
+    border-radius: 2px;
+  }
+
+  .bar__time {
+    margin-left: 2px;
+    color: #c6c7ce;
+    font-size: 7px;
+    font-family: var(--font-family-1);
+  }
+
+  /* Wallpapers */
+  .wallpapers {
+    position: relative;
+    z-index: 1;
+    width: 82%;
+    padding: 12px;
+    border: 1px solid #ffffff14;
+    border-radius: 9px;
+    background: #202126f0;
+    box-shadow: 0 18px 34px -18px #000;
+  }
+
+  .wallpapers__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 9px;
+    color: #d4d4da;
+    font-family: var(--font-family-1);
+    font-size: 7px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .wallpapers__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ef877e22;
+    color: #ffc1bb;
+    font-size: 6px;
+  }
+
+  .wallpapers__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+
+  .wallpapers__tile {
+    aspect-ratio: 16 / 10;
+    border: 1px solid #ffffff12;
+    border-radius: 4px;
+  }
+
+  .wallpapers__tile--a {
+    background: linear-gradient(135deg, #383b57, #ef877e 130%);
+  }
+
+  .wallpapers__tile--b {
+    background: linear-gradient(135deg, #1e3a35, #9ed8a9 130%);
+  }
+
+  .wallpapers__tile--c {
+    background: linear-gradient(135deg, #3e2533, #d08ab8 130%);
+  }
+
+  .wallpapers__tile--d {
+    background: linear-gradient(135deg, #2a3245, #7fa8e0 130%);
+  }
+
+  .wallpapers__tile--e {
+    background: linear-gradient(135deg, #3c3021, #e5b86e 130%);
+  }
+
+  .wallpapers__tile--f {
+    background: linear-gradient(135deg, #292a2f, #797a86 130%);
+  }
+
+  .wallpapers__tile.is-active {
+    outline: 1px solid #ef877e;
+    outline-offset: 1px;
+  }
+
+  /* Dock */
+  .dock-wrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dock {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 9px;
+    border: 1px solid #ffffff18;
+    border-radius: 10px;
+    background: #202126ed;
+    box-shadow: 0 16px 30px -14px #000;
+  }
+
+  .dock__app {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 0 #ffffff24;
+  }
+
+  .dock__app--red {
+    background: linear-gradient(145deg, #ef877e, #a94e55);
+  }
+
+  .dock__app--amber {
+    background: linear-gradient(145deg, #e5b86e, #a87935);
+  }
+
+  .dock__app--blue {
+    background: linear-gradient(145deg, #7fa8e0, #466b9e);
+  }
+
+  .dock__app--green {
+    background: linear-gradient(145deg, #9ed8a9, #568f63);
+  }
+
+  .dock__app--violet {
+    background: linear-gradient(145deg, #b79be2, #7255a3);
+  }
+
+  .dock__app--pink {
+    background: linear-gradient(145deg, #d08ab8, #91517c);
+  }
+
+  .dock__sep {
+    width: 1px;
+    height: 16px;
+    margin: 0 3px;
+    background: #ffffff1c;
+  }
+
+  .dock__label {
+    color: #7f808a;
+    font-family: var(--font-family-1);
+    font-size: 6px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* Menu */
+  .menu {
+    position: relative;
+    z-index: 1;
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #ffffff14;
+    border-radius: 9px;
+    background: #202126f0;
+    box-shadow: 0 18px 34px -18px #000;
+  }
+
+  .menu__head {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ffffff0d;
+  }
+
+  .menu__avatar {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ef877e, #7f5ee0);
+  }
+
+  .menu__name {
+    color: #d4d4da;
+    font-family: var(--font-family-1);
+    font-size: 7px;
+  }
+
+  .menu__row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-top: 7px;
+  }
+
+  .menu__icon {
+    width: 9px;
+    height: 9px;
+    border: 1px solid #6b6c75;
+    border-radius: 2px;
+  }
+
+  .menu__line {
+    width: 42px;
+    height: 3px;
+    border-radius: 999px;
+    background: #555660;
+  }
+
+  .menu__line--short {
+    width: 28px;
+  }
+
+  .menu__line--mid {
+    width: 35px;
+  }
+
+  .menu__switch {
+    width: 14px;
+    height: 8px;
+    margin-left: auto;
+    border-radius: 999px;
+    background: #3c3d45;
+  }
+
+  .menu__switch.is-on {
+    background: #ef877e;
+  }
+</style>

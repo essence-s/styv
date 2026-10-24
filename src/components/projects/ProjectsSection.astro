@@ -1,0 +1,275 @@
+---
+import {
+  CATALOG_PROJECTS,
+  FEATURED_PROJECTS,
+  PROJECTS,
+} from '../../data/projects';
+import { withBase } from '../../utils/routes';
+import ProjectCard from './ProjectCard.astro';
+
+// const [lead, ...featured] = FEATURED_PROJECTS;
+// const moreProjects = CATALOG_PROJECTS.filter(
+//   (project) => !project.featured
+// ).slice(0, 6);
+const catalogUrl = withBase('/proyectos/');
+---
+
+<section class='projects' id='proyects'>
+  <div class='projects__container'>
+    <header class='projects__head'>
+      <div>
+        <p class='projects__eyebrow'>Portafolio</p>
+        <h2 class='projects__title'>Proyectos</h2>
+      </div>
+
+      <div class='projects__head-side'>
+        <p class='projects__intro'>
+          Interfaces, webs y automatizaciones. Una selección de lo que he
+          construido, con el contexto de cada pieza.
+        </p>
+        <a class='projects__all' href={catalogUrl}>
+          Ver los {PROJECTS.length} proyectos
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='16'
+            height='16'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            stroke-width='2'
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            aria-hidden='true'
+          >
+            <path d='M5 12h14'></path>
+            <path d='m12 5 7 7-7 7'></path>
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- {
+      lead && (
+        <div class='projects__lead'>
+          <ProjectCard project={lead} />
+        </div>
+      )
+    } -->
+
+    {
+      PROJECTS.length > 0 && (
+        <div class='projects__featured'>
+          {PROJECTS.map((project) => (
+            <ProjectCard project={project} />
+          ))}
+        </div>
+      )
+    }
+
+    <!-- <div class='projects__more-head'>
+      <h3>Más proyectos</h3>
+      <span>{moreProjects.length} piezas seleccionadas</span>
+    </div>
+
+    <div class='projects__more'>
+      {moreProjects.map((project) => <ProjectCard project={project} />)}
+    </div> -->
+  </div>
+</section>
+
+<style>
+  .projects {
+    display: flex;
+    min-height: 100vh;
+    color: var(--color-text);
+    background:
+      radial-gradient(60% 50% at 85% 0%, #ef877e0d, transparent 65%),
+      linear-gradient(281deg, #19191a, #1a1a1c);
+    font-family: var(--font-family-1);
+  }
+
+  .projects__container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 130px 60px 110px;
+  }
+
+  .projects__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 42px;
+    padding-bottom: 26px;
+    border-bottom: 1px solid #ffffff10;
+  }
+
+  .projects__eyebrow {
+    margin: 0 0 6px;
+    color: var(--color-button);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  .projects__title {
+    margin: 0;
+    font-family: var(--font-family);
+    font-size: clamp(3.6rem, 8vw, 5.6rem);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 0.85;
+    text-transform: uppercase;
+  }
+
+  .projects__head-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 16px;
+    max-width: 430px;
+    text-align: right;
+  }
+
+  .projects__intro {
+    margin: 0;
+    color: #b7b8bf;
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .projects__all,
+  .projects__catalog-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #f0d7d3;
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .projects__all:hover,
+  .projects__catalog-link:hover {
+    color: var(--color-button);
+  }
+
+  .projects__lead {
+    margin-bottom: 24px;
+  }
+
+  .projects__featured {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .projects__more-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 64px 0 20px;
+  }
+
+  .projects__more-head h3 {
+    margin: 0;
+    font-family: var(--font-family);
+    font-size: 2.2rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .projects__more-head span {
+    color: #8f9098;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .projects__more {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .projects__catalog-link {
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 34px;
+    padding: 16px 18px;
+    border: 1px solid #ffffff12;
+    border-radius: 10px;
+    background: #ffffff05;
+    color: #d8d8dd;
+    font-size: 0.82rem;
+  }
+
+  .projects__catalog-link:hover {
+    border-color: #ef877e3d;
+    background: #ef877e0d;
+  }
+
+  .projects__catalog-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    margin-left: auto;
+    border-radius: 50%;
+    background: #ef877e1f;
+    color: #ffc1bb;
+    font-size: 0.72rem;
+  }
+
+  @media (max-width: 1080px) {
+    .projects__container {
+      padding: 110px 40px 90px;
+    }
+
+    .projects__more {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .projects__container {
+      padding: 90px 30px 80px;
+    }
+
+    .projects__head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .projects__head-side {
+      align-items: flex-start;
+      max-width: 560px;
+      text-align: left;
+    }
+
+    .projects__featured {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .projects__container {
+      padding: 80px 20px 70px;
+    }
+
+    .projects__more {
+      grid-template-columns: 1fr;
+    }
+
+    .projects__more-head {
+      margin-top: 48px;
+    }
+  }
+</style>

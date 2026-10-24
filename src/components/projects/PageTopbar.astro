@@ -1,0 +1,117 @@
+---
+import { withBase } from '../../utils/routes';
+
+interface Props {
+  section?: string;
+}
+
+const { section = 'Proyectos' } = Astro.props;
+const homeUrl = withBase('/');
+---
+
+<header class='topbar'>
+  <div class='topbar__inner'>
+    <a class='topbar__brand' href={homeUrl}>
+      <!-- <span class='topbar__mark'>S</span> -->
+      <img src='/public/favicon.svg' class='topbar__mark' alt='' />
+      <span>STYV</span>
+    </a>
+
+    <nav class='topbar__nav' aria-label='Navegación principal'>
+      <a href={homeUrl}>Inicio</a>
+      <a class='is-current' href={withBase('/proyectos/')} aria-current='page'
+        >{section}</a
+      >
+      <a href={`${homeUrl}#about`}>Sobre mí</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .topbar {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    border-bottom: 1px solid #ffffff0d;
+    background: #1a1a1c;
+    font-family: var(--font-family-1);
+  }
+
+  .topbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 18px 60px;
+  }
+
+  .topbar__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: #f1f1f3;
+    font-family: var(--font-family);
+    font-size: 1.35rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+
+  .topbar__mark {
+    /* display: inline-flex; */
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+  }
+
+  .topbar__nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .topbar__nav a {
+    position: relative;
+    color: #9e9fa7;
+    font-size: 0.75rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .topbar__nav a:hover,
+  .topbar__nav a.is-current {
+    color: #f0f0f2;
+  }
+
+  .topbar__nav a.is-current::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -7px;
+    left: 0;
+    height: 1px;
+    background: #ef877e;
+  }
+
+  @media (max-width: 900px) {
+    .topbar__inner {
+      padding: 16px 30px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .topbar__inner {
+      padding: 14px 20px;
+    }
+
+    .topbar__nav {
+      gap: 14px;
+    }
+
+    .topbar__nav a:not(.is-current) {
+      display: none;
+    }
+  }
+</style>

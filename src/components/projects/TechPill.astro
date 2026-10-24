@@ -1,0 +1,66 @@
+---
+import { TECHS, type TechKey } from '../../data/techs';
+
+interface Props {
+  tech: TechKey;
+  compact?: boolean;
+}
+
+const { tech, compact = false } = Astro.props;
+const item = TECHS[tech];
+---
+
+<span class:list={['tech-pill', { 'tech-pill--compact': compact }]}>
+  <span class='tech-pill__icon'>
+    <img src={item.src} alt='' loading='lazy' decoding='async' />
+  </span>
+  <span class='tech-pill__name'>{item.name}</span>
+</span>
+
+<style>
+  .tech-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    width: max-content;
+    max-width: 100%;
+    padding: 5px 11px;
+    border: 1px solid #ffffff17;
+    border-radius: 999px;
+    background: linear-gradient(271deg, #ffffff12, #ffffff05);
+    box-shadow: 2px 2px 3px 0 #0000001f;
+    color: #cecece;
+    font-family: var(--font-family-1);
+    font-size: 0.72rem;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .tech-pill--compact {
+    padding: 4px 9px;
+    font-size: 0.66rem;
+  }
+
+  .tech-pill__icon {
+    display: inline-flex;
+    width: 14px;
+    height: 14px;
+    flex: none;
+  }
+
+  .tech-pill--compact .tech-pill__icon {
+    width: 12px;
+    height: 12px;
+  }
+
+  .tech-pill__icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .tech-pill__name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>

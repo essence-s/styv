@@ -1,0 +1,63 @@
+---
+import type { ProjectStatus } from '../../data/projects';
+
+interface Props {
+  status: ProjectStatus;
+}
+
+const { status } = Astro.props;
+
+const STATUS_LABELS: Record<ProjectStatus, string> = {
+  live: 'En vivo',
+  beta: 'Beta',
+  wip: 'En desarrollo',
+  archived: 'Archivado',
+};
+---
+
+<span class:list={['status-badge', `status-badge--${status}`]}>
+  <span class='status-badge__dot' aria-hidden='true'></span>
+  {STATUS_LABELS[status]}
+</span>
+
+<style>
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    width: max-content;
+    padding: 4px 9px;
+    border: 1px solid #ffffff17;
+    border-radius: 999px;
+    background: #ffffff08;
+    color: #c9c9cf;
+    font-family: var(--font-family-1);
+    font-size: 0.68rem;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .status-badge__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 0 3px #ffffff0a;
+  }
+
+  .status-badge--live {
+    color: #9ed8a9;
+  }
+
+  .status-badge--beta {
+    color: #ffd479;
+  }
+
+  .status-badge--wip {
+    color: #9bc7ff;
+  }
+
+  .status-badge--archived {
+    color: #a4a4ac;
+  }
+</style>

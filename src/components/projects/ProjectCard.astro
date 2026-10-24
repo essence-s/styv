@@ -1,0 +1,428 @@
+---
+import { Image } from 'astro:assets';
+import type { Project } from '../../data/projects';
+import { PROJECT_TYPE_LABELS } from '../../data/projects';
+import { projectUrl } from '../../utils/routes';
+import StatusBadge from './StatusBadge.astro';
+import TechPill from './TechPill.astro';
+
+interface Props {
+  project: Project;
+  variant?: 'horizontal' | 'vertical';
+}
+
+const { project, variant = 'horizontal' } = Astro.props;
+
+const url = projectUrl(project.slug);
+const visibleTechs = project.techs.slice(0, 4);
+const extraTechs = project.techs.length - visibleTechs.length;
+const demoLabel = project.links.demo?.startsWith('mailto:')
+  ? 'Contacto'
+  : 'Demo';
+const isVertical = variant === 'vertical';
+---
+
+<article class:list={['project-card', { 'project-card--vertical': isVertical }]}>
+  <a class='project-card__media' href={url} aria-label={`Ver ${project.title}`}>
+    <span class='project-card__glow' aria-hidden='true'></span>
+    <span class='project-card__shot'>
+      <Image
+        src={project.cover}
+        alt={project.coverAlt}
+        widths={[560, 900, 1200]}
+        sizes='(max-width: 900px) 100vw, 55vw'
+        loading='lazy'
+        decoding='async'
+      />
+    </span>
+  </a>
+
+  <div class='project-card__body'>
+    <div class='project-card__meta'>
+      <span class='project-card__type'>{PROJECT_TYPE_LABELS[project.type]}</span
+      >
+      <!-- <StatusBadge status={project.status} /> -->
+      {
+        project.modules && (
+          <span class='project-card__modules-count'>
+            {project.modules.length} módulos
+          </span>
+        )
+      }
+    </div>
+
+    <h3 class='project-card__title'>
+      <a href={url}>{project.title}</a>
+    </h3>
+
+    <p class='project-card__tagline'>{project.tagline}</p>
+
+    {
+      project.modules && (
+        <ul class='project-card__modules' aria-label='Módulos de la suite'>
+          {project.modules.map((module) => (
+            <li>{module.name}</li>
+          ))}
+        </ul>
+      )
+    }
+
+    <div class='project-card__techs'>
+      {visibleTechs.map((tech) => <TechPill tech={tech} />)}
+      {
+        extraTechs > 0 && (
+          <span class='project-card__more-techs'>+{extraTechs}</span>
+        )
+      }
+    </div>
+
+    <div class='project-card__actions'>
+      <a class='project-card__action project-card__action--primary' href={url}>
+        Ver proyecto
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          width='14'
+          height='14'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          stroke-width='2'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          aria-hidden='true'
+        >
+          <path d='M5 12h14'></path>
+          <path d='m12 5 7 7-7 7'></path>
+        </svg>
+      </a>
+
+      {
+        project.links.repo && (
+          <a
+            class='project-card__action'
+            href={project.links.repo}
+            target='_blank'
+            rel='noreferrer'
+          >
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              width='14'
+              height='14'
+              viewBox='0 0 24 24'
+              fill='none'
+              stroke='currentColor'
+              stroke-width='2'
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              aria-hidden='true'
+            >
+              <path d='M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4' />
+              <path d='M9 18c-4.51 2-5-2-7-2' />
+            </svg>
+            GitHub
+          </a>
+        )
+      }
+
+      {
+        project.links.demo && (
+          <a
+            class='project-card__action'
+            href={project.links.demo}
+            target='_blank'
+            rel='noreferrer'
+          >
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              width='14'
+              height='14'
+              viewBox='0 0 24 24'
+              fill='none'
+              stroke='currentColor'
+              stroke-width='2'
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              aria-hidden='true'
+            >
+              <path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6' />
+              <polyline points='15 3 21 3 21 9' />
+              <line x1='10' y1='14' x2='21' y2='3' />
+            </svg>
+            {demoLabel}
+          </a>
+        )
+      }
+    </div>
+  </div>
+</article>
+
+<style>
+  .project-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    overflow: hidden;
+    border: 1px solid #ffffff14;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #2b2c31 0%, #26272b 100%);
+    box-shadow: 0 18px 40px -30px #000000cc;
+    transition:
+      border-color 0.25s ease,
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .project-card--vertical {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card:hover {
+    border-color: #ffffff2e;
+    box-shadow: 0 24px 50px -28px #000000d9;
+  }
+
+  .project-card__media {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 24px;
+    isolation: isolate;
+  }
+
+  .project-card__media::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(120% 80% at 20% 0%, #ffffff0d, transparent 60%),
+      linear-gradient(180deg, #202126, #25262a);
+  }
+
+  .project-card__glow {
+    position: absolute;
+    inset: 18% 8% 10%;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, #ef877e2e, transparent 75%);
+    filter: blur(22px);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-card:hover .project-card__glow {
+    opacity: 1;
+  }
+
+  .project-card__shot {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ffffff17;
+    border-radius: 9px;
+    background: #17181b;
+    box-shadow: 8px 12px 30px -12px #000000b3;
+    transform: translateZ(0);
+    transition: transform 0.35s ease;
+  }
+
+  .project-card__shot :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  .project-card--vertical .project-card__shot :global(img) {
+    aspect-ratio: 4 / 3;
+  }
+
+  .project-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    padding: 34px 34px 34px 34px;
+    color: var(--color-text);
+    font-family: var(--font-family-1);
+  }
+
+  .project-card--vertical .project-card__body {
+    justify-content: flex-start;
+    padding: 22px 24px 24px;
+  }
+
+  .project-card--vertical .project-card__media {
+    padding: 16px;
+  }
+
+  .project-card--vertical .project-card__shot {
+    height: auto;
+  }
+
+  .project-card__meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    color: #9b9ba4;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .project-card__type {
+    color: #ef877e;
+    font-weight: 600;
+  }
+
+  .project-card__modules-count {
+    color: #9b9ba4;
+  }
+
+  .project-card__title {
+    margin: 0;
+    font-family: var(--font-family);
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    font-weight: 400;
+    letter-spacing: -1px;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+
+  .project-card__title a {
+    color: #f2f2f4;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .project-card__title a:hover {
+    color: var(--color-button);
+  }
+
+  .project-card__tagline {
+    max-width: 54ch;
+    margin: 0;
+    color: #b9bcc4;
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  .project-card__modules {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .project-card__modules li {
+    padding: 4px 9px;
+    border: 1px solid #ffffff11;
+    border-radius: 4px;
+    background: #ffffff07;
+    color: #d2d2d7;
+    font-size: 0.66rem;
+  }
+
+  .project-card__techs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    margin-top: auto;
+    padding-top: 2px;
+  }
+
+  .project-card__more-techs {
+    color: #8f8f98;
+    font-size: 0.68rem;
+  }
+
+  .project-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding-top: 4px;
+  }
+
+  .project-card__action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 11px;
+    border: 1px solid #ffffff17;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #0000001c, #00000021);
+    box-shadow: 2px 2px 3px 0 #0000001f;
+    color: #cfd0d5;
+    font-size: 0.72rem;
+    text-decoration: none;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .project-card__action:hover {
+    border-color: #ffffff2a;
+    background: #00000045;
+    color: #ffffff;
+  }
+
+  .project-card__action--primary {
+    border-color: #ef877e55;
+    background: #ef877e1a;
+    color: #ffc1bb;
+  }
+
+  .project-card__action--primary:hover {
+    border-color: #ef877e88;
+    background: #ef877e2b;
+    color: #ffffff;
+  }
+
+  @media (max-width: 900px) {
+    .project-card {
+      grid-template-columns: 1fr;
+    }
+
+    .project-card__media {
+      padding: 22px 22px 0;
+    }
+
+    .project-card__body {
+      justify-content: flex-start;
+      padding: 20px 22px 24px;
+    }
+
+    .project-card__shot {
+      height: auto;
+    }
+
+    .project-card__shot :global(img) {
+      aspect-ratio: 16 / 9;
+      height: auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .project-card__media {
+      padding: 16px 16px 0;
+    }
+
+    .project-card__body {
+      padding: 16px 18px 18px;
+    }
+
+    .project-card__title {
+      font-size: clamp(2rem, 14vw, 2.8rem);
+    }
+  }
+</style>
