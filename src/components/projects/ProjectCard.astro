@@ -1,7 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import type { Project } from '../../data/projects';
-import { PROJECT_TYPE_LABELS } from '../../data/projects';
+import {
+  getProjectHoverImages,
+  PROJECT_TYPE_LABELS,
+} from '../../data/projects';
 import { projectUrl } from '../../utils/routes';
 import StatusBadge from './StatusBadge.astro';
 import TechPill from './TechPill.astro';
@@ -20,9 +23,35 @@ const demoLabel = project.links.demo?.startsWith('mailto:')
   ? 'Contacto'
   : 'Demo';
 const isVertical = variant === 'vertical';
+const isCollection = project.kind === 'collection';
+const hoverImages = getProjectHoverImages(project);
+const galleryStep = Math.max(
+  0.7,
+  Math.min(1.1, 5 / Math.max(hoverImages.length, 1))
+);
+const moduleCount = project.modules?.length ?? 0;
+const repoCount = project.modules?.filter((module) => module.repo).length ?? 0;
+const pendingRepoCount = moduleCount - repoCount;
+const pendingRepoLabel = `${pendingRepoCount} pendiente${
+  pendingRepoCount === 1 ? '' : 's'
+}`;
+const repoSummary =
+  repoCount === 0
+    ? pendingRepoLabel
+    : `${repoCount} ${repoCount === 1 ? 'repo' : 'repos'}${
+        pendingRepoCount > 0 ? ` · ${pendingRepoLabel}` : ''
+      }`;
 ---
 
-<article class:list={['project-card', { 'project-card--vertical': isVertical }]}>
+<article
+  class:list={[
+    'project-card',
+    {
+      'project-card--vertical': isVertical,
+      'project-card--collection': isCollection,
+    },
+  ]}
+>
   <a class='project-card__media' href={url} aria-label={`Ver ${project.title}`}>
     <span class='project-card__glow' aria-hidden='true'></span>
     <span class='project-card__shot'>
@@ -34,6 +63,31 @@ const isVertical = variant === 'vertical';
         loading='lazy'
         decoding='async'
       />
+      {
+        hoverImages.length > 0 && (
+          <span
+            class='project-card__gallery'
+            style={`--gallery-step: ${galleryStep}s`}
+            aria-hidden='true'
+          >
+            {hoverImages.map((image, index) => (
+              <span
+                class='project-card__gallery-item'
+                style={`--gallery-index: ${index}`}
+              >
+                <Image
+                  src={image}
+                  alt=''
+                  widths={[560, 900, 1200]}
+                  sizes='(max-width: 900px) 100vw, 55vw'
+                  loading='lazy'
+                  decoding='async'
+                />
+              </span>
+            ))}
+          </span>
+        )
+      }
     </span>
   </a>
 
@@ -41,11 +95,16 @@ const isVertical = variant === 'vertical';
     <div class='project-card__meta'>
       <span class='project-card__type'>{PROJECT_TYPE_LABELS[project.type]}</span
       >
+      <!-- {
+        isCollection && (
+          <span class='project-card__kind'>Proyecto combinado</span>
+        )
+      } -->
       <!-- <StatusBadge status={project.status} /> -->
       {
         project.modules && (
           <span class='project-card__modules-count'>
-            {project.modules.length} módulos
+            {isCollection ? repoSummary : `${moduleCount} módulos`}
           </span>
         )
       }
@@ -59,9 +118,47 @@ const isVertical = variant === 'vertical';
 
     {
       project.modules && (
-        <ul class='project-card__modules' aria-label='Módulos de la suite'>
+        <ul
+          class='project-card__modules'
+          aria-label={
+            isCollection
+              ? 'Repositorios de la colección'
+              : 'Módulos de la suite'
+          }
+        >
           {project.modules.map((module) => (
-            <li>{module.name}</li>
+            <li class:list={{ 'is-pending': !module.repo }}>
+              {module.repo ? (
+                <a
+                  href={module.repo}
+                  target='_blank'
+                  rel='noreferrer'
+                  title={`Repositorio de ${module.name}`}
+                >
+                  {module.name}
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='10'
+                    height='10'
+                    viewBox='0 0 24 24'
+                    fill='none'
+                    stroke='currentColor'
+                    stroke-width='2'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                    aria-hidden='true'
+                  >
+                    <path d='M7 17 17 7' />
+                    <path d='M7 7h10v10' />
+                  </svg>
+                </a>
+              ) : (
+                <>
+                  <span>{module.name}</span>
+                  <span class='project-card__module-pending'>pendiente</span>
+                </>
+              )}
+            </li>
           ))}
         </ul>
       )
@@ -182,6 +279,14 @@ const isVertical = variant === 'vertical';
     box-shadow: 0 24px 50px -28px #000000d9;
   }
 
+  .project-card--collection {
+    border-color: #ef877e2e;
+  }
+
+  .project-card--collection:hover {
+    border-color: #ef877e55;
+  }
+
   .project-card__media {
     position: relative;
     display: flex;
@@ -216,6 +321,7 @@ const isVertical = variant === 'vertical';
   }
 
   .project-card__shot {
+    position: relative;
     display: block;
     overflow: hidden;
     width: 100%;
@@ -232,12 +338,52 @@ const isVertical = variant === 'vertical';
     display: block;
     width: 100%;
     height: 100%;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
   }
 
   .project-card--vertical .project-card__shot :global(img) {
     aspect-ratio: 4 / 3;
+  }
+
+  .project-card__gallery {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .project-card__gallery-item {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.55s ease;
+  }
+
+  .project-card__shot .project-card__gallery-item :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+  }
+
+  @media (hover: hover) {
+    .project-card:hover .project-card__gallery-item {
+      opacity: 1;
+      transition-delay: calc(
+        0.15s + var(--gallery-index) * var(--gallery-step)
+      );
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-card__gallery-item {
+      transition: none;
+    }
+
+    .project-card:hover .project-card__gallery-item {
+      opacity: 0;
+    }
   }
 
   .project-card__body {
@@ -268,7 +414,7 @@ const isVertical = variant === 'vertical';
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 14px;
     color: #9b9ba4;
     font-size: 0.68rem;
     letter-spacing: 0.08em;
@@ -277,6 +423,16 @@ const isVertical = variant === 'vertical';
 
   .project-card__type {
     color: #ef877e;
+    font-weight: 600;
+  }
+
+  .project-card__kind {
+    padding: 2px 6px;
+    border: 1px solid #ef877e3d;
+    border-radius: 4px;
+    background: #ef877e12;
+    color: #ffc1bb;
+    font-size: 0.62rem;
     font-weight: 600;
   }
 
@@ -328,6 +484,32 @@ const isVertical = variant === 'vertical';
     background: #ffffff07;
     color: #d2d2d7;
     font-size: 0.66rem;
+  }
+
+  .project-card__modules li.is-pending {
+    border-style: dashed;
+    color: #8f9098;
+  }
+
+  .project-card__modules li a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .project-card__modules li a:hover {
+    color: #ffc1bb;
+  }
+
+  .project-card__module-pending {
+    margin-left: 4px;
+    color: #7f808a;
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 
   .project-card__techs {

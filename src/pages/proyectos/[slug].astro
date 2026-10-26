@@ -38,6 +38,8 @@ const demoLabel = project.links.demo?.startsWith('mailto:')
   ? 'Contacto'
   : 'Ver demo';
 const catalogUrl = withBase('/proyectos/');
+const isCollection = project.kind === 'collection';
+const moduleCount = project.modules?.length ?? 0;
 ---
 
 <Layout
@@ -73,8 +75,12 @@ const catalogUrl = withBase('/proyectos/');
           <p class='detail__eyebrow'>
             {PROJECT_TYPE_LABELS[project.type]}
             {
-              project.modules && (
-                <span> · Suite de {project.modules.length} módulos</span>
+              isCollection ? (
+                <span> · Proyecto combinado de {moduleCount} repositorios</span>
+              ) : (
+                project.modules && (
+                  <span> · Suite de {moduleCount} módulos</span>
+                )
               )
             }
           </p>
@@ -211,8 +217,39 @@ const catalogUrl = withBase('/proyectos/');
           {
             project.modules && (
               <div class='detail__fact'>
-                <span>Incluye</span>
-                <strong>{project.modules.length} módulos</strong>
+                <span>{isCollection ? 'Repositorios' : 'Incluye'}</span>
+                {isCollection ? (
+                  <div class='detail__repos'>
+                    {project.modules.map((module) =>
+                      module.repo ? (
+                        <a href={module.repo} target='_blank' rel='noreferrer'>
+                          {module.name}
+                          <svg
+                            xmlns='http://www.w3.org/2000/svg'
+                            width='11'
+                            height='11'
+                            viewBox='0 0 24 24'
+                            fill='none'
+                            stroke='currentColor'
+                            stroke-width='2'
+                            stroke-linecap='round'
+                            stroke-linejoin='round'
+                            aria-hidden='true'
+                          >
+                            <path d='M7 17 17 7' />
+                            <path d='M7 7h10v10' />
+                          </svg>
+                        </a>
+                      ) : (
+                        <span class='detail__repo-pending'>
+                          {module.name} · pendiente
+                        </span>
+                      )
+                    )}
+                  </div>
+                ) : (
+                  <strong>{moduleCount} módulos</strong>
+                )}
               </div>
             )
           }
@@ -228,15 +265,29 @@ const catalogUrl = withBase('/proyectos/');
                 <h2 id='modules-title'>Módulos de {project.title}</h2>
               </div>
               <p>
-                Cada pieza funciona sola, pero juntas forman un mismo entorno de
-                escritorio.
+                {isCollection
+                  ? 'Cada repositorio funciona por separado, pero juntos forman este mismo entorno de escritorio.'
+                  : 'Cada pieza funciona sola, pero juntas forman un mismo entorno.'}
               </p>
             </div>
 
             <div class='detail__modules-grid'>
               {project.modules.map((module) => (
                 <article class='module-card'>
-                  <ModulePreview variant={module.icon} />
+                  {module.images?.[0] ? (
+                    <div class='module-card__media'>
+                      <Image
+                        src={module.images[0]}
+                        alt={`Captura de ${module.name}`}
+                        widths={[480, 800]}
+                        sizes='(max-width: 700px) 100vw, 50vw'
+                        loading='lazy'
+                        decoding='async'
+                      />
+                    </div>
+                  ) : (
+                    <ModulePreview variant={module.icon} />
+                  )}
                   <div class='module-card__body'>
                     <h3>{module.name}</h3>
                     <p>{module.description}</p>
@@ -246,6 +297,35 @@ const catalogUrl = withBase('/proyectos/');
                           <TechPill tech={tech} compact />
                         ))}
                       </div>
+                    )}
+                    {module.repo ? (
+                      <a
+                        class='module-card__repo'
+                        href={module.repo}
+                        target='_blank'
+                        rel='noreferrer'
+                      >
+                        Ver repositorio
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          width='12'
+                          height='12'
+                          viewBox='0 0 24 24'
+                          fill='none'
+                          stroke='currentColor'
+                          stroke-width='2'
+                          stroke-linecap='round'
+                          stroke-linejoin='round'
+                          aria-hidden='true'
+                        >
+                          <path d='M7 17 17 7' />
+                          <path d='M7 7h10v10' />
+                        </svg>
+                      </a>
+                    ) : (
+                      <span class='module-card__repo module-card__repo--pending'>
+                        Repositorio pendiente
+                      </span>
                     )}
                   </div>
                 </article>
@@ -568,6 +648,34 @@ const catalogUrl = withBase('/proyectos/');
     gap: 4px;
   }
 
+  .detail__repos {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .detail__repos a,
+  .detail__repo-pending {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #d5d6db;
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .detail__repos a:hover {
+    color: var(--color-button);
+  }
+
+  .detail__repos .detail__repo-pending {
+    color: #7f808a;
+    font-size: 0.8rem;
+    letter-spacing: normal;
+    text-transform: none;
+  }
+
   .detail__modules,
   .detail__video,
   .detail__related {
@@ -644,11 +752,45 @@ const catalogUrl = withBase('/proyectos/');
     line-height: 1.6;
   }
 
+  .module-card__media {
+    overflow: hidden;
+    border-bottom: 1px solid #ffffff0f;
+    background: #17181b;
+  }
+
+  .module-card__media :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
   .module-card__techs {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
     margin-top: 12px;
+  }
+
+  .module-card__repo {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 14px;
+    color: #f0d7d3;
+    font-size: 0.74rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .module-card__repo:hover {
+    color: var(--color-button);
+  }
+
+  .module-card__repo--pending {
+    color: #7f808a;
+    cursor: default;
   }
 
   .detail__video-frame {

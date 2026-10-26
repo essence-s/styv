@@ -1,5 +1,6 @@
 import type { ImageMetadata } from 'astro';
 import barrita from '@assets/projects/barrita.png';
+import fondito from '@assets/projects/fondito.webp';
 import ahiseve from '@assets/projects/ahiseve2.png';
 import sonqu from '@assets/projects/sonqu.png';
 import jhigger from '@assets/projects/jhigger.png';
@@ -13,12 +14,15 @@ import type { TechKey } from './techs';
 
 export type ProjectType = 'interface' | 'web' | 'app' | 'bot';
 export type ProjectStatus = 'live' | 'beta' | 'wip' | 'archived';
+export type ProjectKind = 'single' | 'collection';
 
 export interface ProjectModule {
   name: string;
   description: string;
   icon: 'bar' | 'wallpaper' | 'dock' | 'menu';
   techs?: TechKey[];
+  repo?: string;
+  images?: ImageMetadata[];
 }
 
 export interface ProjectLinks {
@@ -33,11 +37,13 @@ export interface Project {
   tagline: string;
   description: string;
   type: ProjectType;
+  kind?: ProjectKind;
   status: ProjectStatus;
   featured: boolean;
   order: number;
   cover: ImageMetadata;
   coverAlt: string;
+  images?: ImageMetadata[];
   techs: TechKey[];
   links: ProjectLinks;
   modules?: ProjectModule[];
@@ -53,13 +59,14 @@ export const PROJECT_TYPE_LABELS: Record<ProjectType, string> = {
 
 export const PROJECTS: Project[] = [
   {
-    slug: 'barrita-desktop',
-    title: 'Barrita Desktop',
+    slug: 'interfaz-escritorio',
+    title: 'Interfaz de escritorio',
     tagline:
       'Un entorno de escritorio ligero para Linux: barra de estado, dock, wallpapers y menús rápidos.',
     description:
-      'Barrita nació como una barra de estado para mostrar información del sistema. Con el tiempo creció hasta convertirse en una pequeña suite de escritorio: un dock para acceder a las aplicaciones, un selector de wallpapers y menús compactos para las acciones del día a día. Está construida con Rust y Slint, buscando un consumo bajo de recursos y una interfaz que no estorbe.',
+      'Conjunto de proyectos desarrollados con Rust y Slint para mejorar la interacción y personalización del escritorio Linux. Incluye una barra de estado con menús y accesos rápidos, además de un selector de fondos de pantalla con previsualización y organización por colecciones. Diseñado para ofrecer una experiencia ligera y eficiente en el uso de recursos.',
     type: 'interface',
+    kind: 'collection',
     status: 'beta',
     featured: true,
     order: 1,
@@ -67,9 +74,7 @@ export const PROJECTS: Project[] = [
     coverAlt:
       'Escritorio de Barrita con barra de estado, dock y gestor de ventanas',
     techs: ['rust', 'slint'],
-    links: {
-      repo: 'https://github.com/essence-s/barrita',
-    },
+    links: {},
     modules: [
       {
         name: 'Barrita',
@@ -77,19 +82,23 @@ export const PROJECTS: Project[] = [
           'Barra de estado con hora, batería, volumen, workspaces y accesos rápidos al sistema.',
         icon: 'bar',
         techs: ['rust', 'slint'],
+        repo: 'https://github.com/essence-s/barrita',
+        images: [barrita],
       },
       {
-        name: 'Wallpaper Picker',
+        name: 'Fondito',
         description:
           'Selector de fondos con previsualización, organización por colecciones y cambio al instante.',
         icon: 'wallpaper',
         techs: ['rust', 'slint'],
+        images: [fondito],
+        repo: 'https://github.com/essence-s/fondito',
       },
     ],
     highlights: [
-      'Una sola suite en lugar de cuatro aplicaciones sueltas.',
-      'Interfaz pensada para teclado y uso diario.',
       'Rust + Slint para mantener el consumo bajo.',
+      'Barra de estado y selector de fondos de pantalla independientes.',
+      'Diseñadas para integrarse con el escritorio Linux.',
     ],
   },
   {
@@ -288,3 +297,18 @@ export const PROJECT_TYPE_COUNTS = PROJECTS.reduce(
 
 export const getProjectBySlug = (slug: string) =>
   PROJECTS.find((project) => project.slug === slug);
+
+export const getProjectHoverImages = (project: Project): ImageMetadata[] => {
+  const images =
+    project.kind === 'collection'
+      ? (project.modules ?? []).flatMap((module) => module.images ?? [])
+      : (project.images ?? []);
+
+  const seen = new Set([project.cover.src]);
+
+  return images.filter((image) => {
+    if (seen.has(image.src)) return false;
+    seen.add(image.src);
+    return true;
+  });
+};
