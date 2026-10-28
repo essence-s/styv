@@ -62,7 +62,7 @@ export const PROJECTS: Project[] = [
     slug: 'interfaz-escritorio',
     title: 'Interfaz de escritorio',
     tagline:
-      'Un entorno de escritorio ligero para Linux: barra de estado, dock, wallpapers y menús rápidos.',
+      'Un entorno de escritorio ligero para Linux: barra de estado, dock, selector de wallpapers y menús rápidos.',
     description:
       'Conjunto de proyectos desarrollados con Rust y Slint para mejorar la interacción y personalización del escritorio Linux. Incluye una barra de estado con menús y accesos rápidos, además de un selector de fondos de pantalla con previsualización y organización por colecciones. Diseñado para ofrecer una experiencia ligera y eficiente en el uso de recursos.',
     type: 'interface',
@@ -125,6 +125,31 @@ export const PROJECTS: Project[] = [
       'Salas compartidas con enlace de invitación.',
       'Reproducción sincronizada para todos los participantes.',
       'Interfaz oscura y sin distracciones.',
+    ],
+  },
+  {
+    slug: 'notin',
+    title: 'Notin',
+    tagline:
+      'Graba notas de voz con un atajo de teclado y transcríbelas localmente, sin conexión a internet.',
+    description:
+      'Notin es una aplicación de escritorio desarrollada con Rust y Slint que permite capturar notas por voz de forma rápida y privada. El usuario inicia la grabación presionando un botón o usando un atajo de teclado global; la aplicación graba el audio del micrófono, lo procesa con un modelo de transcripción (speech-to-text) que funciona 100 % localmente en el equipo —sin conexión a internet— y guarda el resultado como una nota de texto lista para leer, editar o buscar. Todo el flujo, desde la captura de audio hasta la transcripción y el almacenamiento, ocurre en el dispositivo del usuario, priorizando la privacidad y el uso sin conexión.',
+    type: 'app',
+    kind: 'single',
+    status: 'wip',
+    featured: false,
+    order: 11,
+    cover: ahiseve, // requiere el import de arriba; ajustar cuando se agregue la imagen real
+    coverAlt:
+      'Interfaz de Notin con botón de grabación y lista de notas de voz',
+    techs: ['rust', 'slint'],
+    links: {},
+    highlights: [
+      'Grabación de audio con un clic o atajo de teclado global.',
+      'Transcripción a texto con modelo local (STT), sin requerir internet.',
+      'Notas guardadas localmente en el equipo, con texto transcrito y audio original.',
+      'Construida con Rust y Slint para bajo consumo de recursos.',
+      'Enfoque en privacidad: nada se envía a servidores externos.',
     ],
   },
   {
