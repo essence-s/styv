@@ -2,6 +2,7 @@ import type { ImageMetadata } from 'astro';
 import barrita from '@assets/projects/barrita.png';
 import fondito from '@assets/projects/fondito.webp';
 import ahiseve from '@assets/projects/ahiseve2.png';
+import notin from '@assets/projects/notin.webp';
 import sonqu from '@assets/projects/sonqu.png';
 import jhigger from '@assets/projects/jhigger.png';
 import whatsapp from '@assets/projects/whatsappbsender.png';
@@ -133,13 +134,13 @@ export const PROJECTS: Project[] = [
     tagline:
       'Graba notas de voz con un atajo de teclado y transcríbelas localmente, sin conexión a internet.',
     description:
-      'Notin es una aplicación de escritorio desarrollada con Rust y Slint que permite capturar notas por voz de forma rápida y privada. El usuario inicia la grabación presionando un botón o usando un atajo de teclado global; la aplicación graba el audio del micrófono, lo procesa con un modelo de transcripción (speech-to-text) que funciona 100 % localmente en el equipo —sin conexión a internet— y guarda el resultado como una nota de texto lista para leer, editar o buscar. Todo el flujo, desde la captura de audio hasta la transcripción y el almacenamiento, ocurre en el dispositivo del usuario, priorizando la privacidad y el uso sin conexión.',
+      'Notin es una aplicación de escritorio para windows y linux desarrollada con Rust y Slint que permite capturar notas por voz de forma rápida y privada. El usuario inicia la grabación presionando un botón o usando un atajo de teclado global; la aplicación graba el audio del micrófono, lo procesa con un modelo de transcripción (speech-to-text) que funciona 100 % localmente en el equipo —sin conexión a internet— y guarda el resultado como una nota de texto lista para leer, editar o buscar. Todo el flujo, desde la captura de audio hasta la transcripción y el almacenamiento, ocurre en el dispositivo del usuario, priorizando la privacidad y el uso sin conexión.',
     type: 'app',
     kind: 'single',
     status: 'wip',
     featured: false,
     order: 11,
-    cover: ahiseve, // requiere el import de arriba; ajustar cuando se agregue la imagen real
+    cover: notin,
     coverAlt:
       'Interfaz de Notin con botón de grabación y lista de notas de voz',
     techs: ['rust', 'slint'],
